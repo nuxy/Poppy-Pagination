@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+
+	<!-- CSS include start -->
+
+	<link rel="stylesheet" type="text/css" href="jquery.poppy.pagination.css">
+
+	<!-- CSS include end -->
+
+
+	<!-- Javascript insert start -->
+
+	<script src="jquery.poppy.pagination.js"></script>
+	<script>
+	$(document).ready(function() {
+		$('#container').PoppyPagination('generate', {
+			res_total : 100,
+			per_page  : 10,
+			start_num : 0,
+			link_event : function() { alert('callback') }
+		});
+	});
+	</script>
+
+	<!-- Javascript insert end -->
+
+
+	<!-- CSS overrides start -->
+
+	<link rel="stylesheet" type="text/css" href="http://mbrooks.info/demo.css">
+	<link rel="stylesheet" type="text/css" href="demo.css">
+
+	<!-- CSS overrides end -->
+
+
+	<title>Poppy Pagination</title>
+</head>
+<body>
+
+<p id="about">
+	This <strong>jQuery</strong> plugin is <a href="jquery.poppy.pagination.min.js" title="Only ? kb">lightweight</a>, easy to <a href="README.html#install" title="Installation">install</a> / <a href="demo.css" title="Stylesheet">customize</a>, and is compatible with <strong>Firefox 3.6+</strong>, <strong>Chrome</strong>, <strong>Safari 5+</strong>, <strong>Opera</strong>, and <strong>Internet Explorer 7+</strong> web browsers.
+</p>
+
+
+<!-- HTML example start -->
+
+<div id="container"></div>
+
+<!-- HTML example end -->
+
+
+</body>
