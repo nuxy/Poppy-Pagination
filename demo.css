@@ -1,3 +1,11 @@
+/* example */
+
+#container {
+	font-family: Tienne, Sans-Serif;
+	margin: 10% auto 0px auto;
+	width: 800px;
+}
+
 /* customize */
 
 div.poppy_pagination.options {
@@ -26,7 +34,7 @@ ul.poppy_pagination.pages li a {
 }
 
 ul.poppy_pagination.pages li.crumbs {
-	width: 400px;
+	width: 600px;
 }
 
 ul.poppy_pagination.pages li.crumbs a,

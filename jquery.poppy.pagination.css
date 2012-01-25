@@ -73,7 +73,7 @@ ul.poppy_pagination.pages li a {
 
 ul.poppy_pagination.pages li.crumbs {
 	text-align: center;
-	width: 400px;
+	width: 800px;
 }
 
 ul.poppy_pagination.pages li.crumbs a,
@@ -95,16 +95,13 @@ ul.poppy_pagination.pages li.last {
 	width: 100px;
 }
 
-ul.poppy_pagination.pages li.last span {
-	color: #DDDDDD;
-}
-
 ul.poppy_pagination.pages li.next {
 	float: right;
 	text-align: right;
 	width: 100px;
 }
 
+ul.poppy_pagination.pages li.last span,
 ul.poppy_pagination.pages li.next span {
 	color: #DDDDDD;
 }
