@@ -171,7 +171,7 @@
 			.addClass('poppy_pagination pages');
 
 		var temp = $('<li></li>')
-			.addClass('poppy_pagination pages');
+			.addClass('poppy_pagination crumbs');
 
 		for (var i = 0; i < pages; i++) {
 			if (first_link > i) { continue }
