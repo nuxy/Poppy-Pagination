@@ -4,10 +4,10 @@
 	<script src="http://www.google.com/jsapi"></script>
 	<script>
 		google.load('jquery','1.7.1');
-		google.load('jqueryui','1.8.16');
 	</script>
 
 	<script src="plugin/json2.min.js"></script>
+
 
 	<!-- CSS include start -->
 
@@ -21,21 +21,15 @@
 	<script src="jquery.poppy.pagination.js"></script>
 	<script>
 	$(document).ready(function() {
-		var results = exampleData();
-
-		$('#container').PoppyPagination('generate', {
-			res_nodes : results,
-			res_total : results.length,
-			per_page  : 10,
-			start_num : 0,
-			link_event : function() { alert('callback') }
-		});
-
-		function exampleData() {
-			$.getJSON('example.json', function(data) {
-				return data;
+		$.getJSON('demo.json', function(data) {
+			$('#container').PoppyPagination('generate', {
+				res_nodes : data,
+				res_total : data.length,
+				per_page  : 10,
+				start_num : 0,
+				link_event : function() { alert('callback') }
 			});
-		}
+		});
 	});
 	</script>
 
