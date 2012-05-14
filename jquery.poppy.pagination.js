@@ -48,7 +48,7 @@
 					$this.append( createPaginateElm(data) );
 				}
 
-				$this.append(config.res_nodes);
+				//$this.append(config.res_nodes);
 
 				if (config.res_total > 0) {
 					$this.append( createPaginateElm(data)  );
