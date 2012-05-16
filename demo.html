@@ -23,10 +23,11 @@
 	$(document).ready(function() {
 		$.getJSON('demo.json', function(data) {
 			$('#container').PoppyPagination('generate', {
-				res_nodes : data,
-				res_total : data.length,
-				per_page  : 10,
-				start_num : 0,
+				nodes      : data,
+				total      : data.length,
+				per_page   : 10,
+				start_num  : 0,
+				calc_nodes : false,
 				link_event : function() { alert('callback') }
 			});
 		});
