@@ -8,7 +8,6 @@
  *
  *  Dependencies:
  *    jquery.js
- *    jquery-ui.js
  */
 
 (function($) {
@@ -16,7 +15,13 @@
 		init : function(options) {
 
 			// default options
-			var settings = $.extend({}, options);
+			var settings = $.extend({
+				resultNodes  : null,
+				calcNodes    : null,
+				totalResults : 0,
+				perPage      : 10,
+				startPage    : 0
+			}, options);
 
 			return this.each(function() {
 				var $this = $(this),
@@ -43,14 +48,14 @@
 
 				data.config = config;
 
-				if (config.res_total > 0) {
+				if (config.totalResults > 0) {
 					$this.append( createResultBarElm(data) );
 					$this.append( createPaginateElm(data) );
 				}
 
-				//$this.append(config.res_nodes);
+				$this.append(config.resultNodes);
 
-				if (config.res_total > 0) {
+				if (config.totalResults > 0) {
 					$this.append( createPaginateElm(data)  );
 					$this.append( createResultBarElm(data) );
 				}
@@ -77,9 +82,9 @@
 	function createResultBarElm(data) {
 
 		// calculate totals
-		var total = data.config.res_total;
-		var limit = data.config.per_page;
-		var start = data.config.start_num;
+		var total = data.config.totalResults;
+		var limit = data.config.perPage;
+		var start = data.config.startPage;
 
 		var pages = getTotalRows(total, limit);
 
@@ -92,7 +97,7 @@
 		var strong2 = $('<strong>' + last  + '</strong>');
 		var strong3 = $('<strong>' + total + '</strong>');
 
-		var object = $('<div></div>')
+		var obj = $('<div></div>')
 			.addClass('poppy_pagination options');
 
 		var span = $('<span></span>')
@@ -104,7 +109,6 @@
 
 			// .. select menu
 			var label = $('<label></label>').append('Viewing');
-
 			form.append(label);
 
 			var select = $('<select></select>');
@@ -130,8 +134,8 @@
 			if (data.config.link_event) {
 				select.change(function() {
 					var num = parseInt(this.value);
-					data.config.per_page  = num;
-					data.config.start_num = 0;
+					data.config.perPage   = num;
+					data.config.startPage = 0;
 					data.config.link_event(true);
 				});
 			}
@@ -139,9 +143,8 @@
 			form.append(select);
 		}
 
-		object.append(span, form);
-
-		return object;
+		obj.append(span, form);
+		return obj;
 	}
 
 	/*
@@ -150,9 +153,9 @@
 	function createPaginateElm(data) {
 
 		// calculate totals
-		var total = data.config.res_total;
-		var limit = data.config.per_page;
-		var start = data.config.start_num;
+		var total = data.config.totalResults;
+		var limit = data.config.perPage;
+		var start = data.config.startPage;
 
 		var pages = getTotalRows(total, limit);
 
@@ -187,8 +190,8 @@
 					// bind mouse event
 					elm.bind('click', i, function(i) {
 						return function() {
-							data.config.per_page  = limit;
-							data.config.start_num = limit * i;
+							data.config.perPage   = limit;
+							data.config.startPage = limit * i;
 							data.config.link_event(true);
 							return false;
 						};
@@ -208,11 +211,11 @@
 				if (start != (i * limit) ) {
 					elm = $('<a>' + (i + 1) + '</a>').attr('href','#');
 
-					// bin mouse event
+					// bind mouse event
 					elm.bind('click', i, function(i) {
 						return function() {
-							data.config.per_page  = limit;
-							data.config.start_num = limit * i;
+							data.config.perPage   = limit;
+							data.config.startPage = limit * i;
 							data.config.link_event(true);
 							return false;
 						};
@@ -240,8 +243,8 @@
 
 				// bind mouse event
 				elm.onclick(function() {
-					data.config.per_page  = limit;
-					data.config.start_num = ( (curr_page * limit) - (limit * 2) );
+					data.config.perPage   = limit;
+					data.config.startPage = ((curr_page * limit) - (limit * 2));
 					data.config.link_event(true);
 					return false;
 				});
@@ -272,13 +275,13 @@
 
 			var elm;
 
-			if ( (pages > 1) && (total > (curr_page * limit) ) ) {
+			if ( (pages > 1) && (total > (curr_page * limit)) ) {
 				elm = $('<a></a>').attr('href','#');
 
 				// bind mouse event
 				elm.click(function() {
-					data.config.per_page  = limit;
-					data.config.start_num = curr_page * limit;
+					data.config.perPage   = limit;
+					data.config.startPage = curr_page * limit;
 					data.config.link_event(true);
 					return false;
 				});
@@ -301,7 +304,6 @@
 	 */
 	function getTotalRows(total, limit) {
 		var count = Math.round(total / limit);
-
 		if ((count * limit) < total) {
 			count++;
 		}
