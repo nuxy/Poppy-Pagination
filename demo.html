@@ -11,6 +11,7 @@
 
 	<!-- CSS include start -->
 
+	<link rel="stylesheet" type="text/css" href="http://nuxy.github.com/Tidy-Table/jquery.tidy.table.min.css">
 	<link rel="stylesheet" type="text/css" href="jquery.poppy.pagination.css">
 
 	<!-- CSS include end -->
@@ -18,18 +19,23 @@
 
 	<!-- Javascript insert start -->
 
+	<script src="http://nuxy.github.com/Tidy-Table/jquery.tidy.table.min.js"></script>
 	<script src="jquery.poppy.pagination.js"></script>
 	<script>
 	$(document).ready(function() {
 		$.getJSON('demo.json', function(data) {
-			$('#container').PoppyPagination('generate', {
-				resultNodes  : data,
-				calcNodes    : true,
-				totalResults : data.length,
-				perPage      : 10,
-				startPage    : 0,
-				link_event   : function() { alert('callback') }
-			});
+			$('#container')
+				.TidyTable('generate', {
+					columnTitles : ['ID','Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
+					columnValues : data
+				});
+
+			$('#container')
+				.PoppyPagination({
+					totalResults : data.length,
+					perPage      : 1,
+					startPage    : 0
+				});
 		});
 	});
 	</script>
@@ -62,3 +68,4 @@
 
 
 </body>
+</html>

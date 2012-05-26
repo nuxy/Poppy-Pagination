@@ -12,26 +12,9 @@
 
 (function($) {
 	var methods = {
-		init : function(options) {
-
-			// default options
-			var settings = $.extend({
-				resultNodes  : null,
-				calcNodes    : null,
-				totalResults : 0,
-				perPage      : 10,
-				startPage    : 0
-			}, options);
-
+		init : function(config) {
 			return this.each(function() {
-				var $this = $(this),
-					data  = $this.data();
-
-				if (!data) {
-					$(this).data({
-						options : settings,
-					});
-				}
+				$(this).PoppyPagination('generate', config);
 			});
 		},
 
@@ -43,21 +26,14 @@
 
 		generate : function(config) {
 			return this.each(function() {
-				var $this = $(this),
-					data  = $this.data();
-
-				data.config = config;
-
 				if (config.totalResults > 0) {
-					$this.append( createResultBarElm(data) );
-					$this.append( createPaginateElm(data) );
+					$(this).prepend( createResultBarElm(config) );
+					$(this).prepend( createPaginateElm(config)  );
 				}
 
-				$this.append(config.resultNodes);
-
 				if (config.totalResults > 0) {
-					$this.append( createPaginateElm(data)  );
-					$this.append( createResultBarElm(data) );
+					$(this).append( createResultBarElm(config) );
+					$(this).append( createPaginateElm(config)  );
 				}
 			});
 		}
@@ -82,9 +58,9 @@
 	function createResultBarElm(data) {
 
 		// calculate totals
-		var total = data.config.totalResults;
-		var limit = data.config.perPage;
-		var start = data.config.startPage;
+		var total = data.totalResults;
+		var limit = data.perPage;
+		var start = data.startPage;
 
 		var pages = getTotalRows(total, limit);
 
@@ -131,12 +107,12 @@
 			});
 
 			// attach menu options events
-			if (data.config.link_event) {
+			if (data.link_event) {
 				select.change(function() {
 					var num = parseInt(this.value);
-					data.config.perPage   = num;
-					data.config.startPage = 0;
-					data.config.link_event(true);
+					data.perPage   = num;
+					data.startPage = 0;
+					data.link_event(true);
 				});
 			}
 
@@ -153,9 +129,9 @@
 	function createPaginateElm(data) {
 
 		// calculate totals
-		var total = data.config.totalResults;
-		var limit = data.config.perPage;
-		var start = data.config.startPage;
+		var total = data.totalResults;
+		var limit = data.perPage;
+		var start = data.startPage;
 
 		var pages = getTotalRows(total, limit);
 
@@ -190,9 +166,9 @@
 					// bind mouse event
 					elm.bind('click', i, function(i) {
 						return function() {
-							data.config.perPage   = limit;
-							data.config.startPage = limit * i;
-							data.config.link_event(true);
+							data.perPage   = limit;
+							data.startPage = limit * i;
+							data.link_event(true);
 							return false;
 						};
 					});
@@ -214,9 +190,9 @@
 					// bind mouse event
 					elm.bind('click', i, function(i) {
 						return function() {
-							data.config.perPage   = limit;
-							data.config.startPage = limit * i;
-							data.config.link_event(true);
+							data.perPage   = limit;
+							data.startPage = limit * i;
+							data.link_event(true);
 							return false;
 						};
 					});
@@ -243,9 +219,9 @@
 
 				// bind mouse event
 				elm.onclick(function() {
-					data.config.perPage   = limit;
-					data.config.startPage = ((curr_page * limit) - (limit * 2));
-					data.config.link_event(true);
+					data.perPage   = limit;
+					data.startPage = ((curr_page * limit) - (limit * 2));
+					data.link_event(true);
 					return false;
 				});
 			}
@@ -280,9 +256,9 @@
 
 				// bind mouse event
 				elm.click(function() {
-					data.config.perPage   = limit;
-					data.config.startPage = curr_page * limit;
-					data.config.link_event(true);
+					data.perPage   = limit;
+					data.startPage = curr_page * limit;
+					data.link_event(true);
 					return false;
 				});
 			}
