@@ -26,14 +26,16 @@
 
 		generate : function(config) {
 			return this.each(function() {
+				var elm = $(this).parent();
+
 				if (config.totalResults > 0) {
-					$(this).prepend( createResultBarElm(config) );
-					$(this).prepend( createPaginateElm(config)  );
+					elm.prepend( createResultBarElm(config) );
+					elm.prepend( createPaginateElm(config)  );
 				}
 
 				if (config.totalResults > 0) {
-					$(this).append( createResultBarElm(config) );
-					$(this).append( createPaginateElm(config)  );
+					elm.append( createResultBarElm(config) );
+					elm.append( createPaginateElm(config)  );
 				}
 			});
 		}

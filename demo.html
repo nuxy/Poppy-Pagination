@@ -24,13 +24,13 @@
 	<script>
 	$(document).ready(function() {
 		$.getJSON('demo.json', function(data) {
-			$('#container')
+			$('div.results')
 				.TidyTable('generate', {
 					columnTitles : ['ID','Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
 					columnValues : data
 				});
 
-			$('#container')
+			$('div.results')
 				.PoppyPagination({
 					totalResults : data.length,
 					perPage      : 1,
@@ -62,7 +62,9 @@
 
 <!-- HTML example start -->
 
-<div id="container"></div>
+<div id="container">
+	<div class="results"></div>
+</div>
 
 <!-- HTML example end -->
 
