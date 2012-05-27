@@ -62,16 +62,14 @@ ul.poppy_pagination.pages li.next span {
 
 div.poppy_pagination.options,
 ul.poppy_pagination.pages,
-table.tidy_table {
+div.results {
 	clear: both;
+	margin: 0px 20px 0px 20px;
+	width: 100%;
 }
 
 div.poppy_pagination.options {
 	margin: 20px;
-}
-
-ul.poppy_pagination.pages {
-	margin: 0px 20px 0px 20px;
 }
 
 table.tidy_table {
