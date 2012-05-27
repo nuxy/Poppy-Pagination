@@ -115,7 +115,7 @@
 				select.change(function() {
 					data.perPage   = parseInt(this.value);
 					data.startPage = 1;
-					callback(true);
+					callback(data);
 				});
 			}
 
@@ -165,10 +165,10 @@
 					elm = $('<a>' + (i + 1) + '</a>').attr('href','#');
 
 					// bind mouse event
-					elm.bind('click', i, function(i) {
+					elm.bind('click', i, function(event) {
 						data.perPage   = limit;
-						data.startPage = limit * i;
-						callback(true);
+						data.startPage = limit * event.data;
+						callback(data);
 						return false;
 					});
 				}
@@ -187,10 +187,10 @@
 					elm = $('<a>' + (i + 1) + '</a>').attr('href','#');
 
 					// bind mouse event
-					elm.bind('click', i, function(i) {
+					elm.bind('click', i, function(event) {
 						data.perPage   = limit;
-						data.startPage = limit * i;
-						callback(true);
+						data.startPage = limit * event.data;
+						callback(data);
 						return false;
 					});
 				}
@@ -218,7 +218,7 @@
 				elm.click(function() {
 					data.perPage   = limit;
 					data.startPage = ((curr_page * limit) - (limit * 2));
-					callback(true);
+					callback(data);
 					return false;
 				});
 			}
@@ -255,7 +255,7 @@
 				elm.click(function() {
 					data.perPage   = limit;
 					data.startPage = curr_page * limit;
-					callback(true);
+					callback(data);
 					return false;
 				});
 			}
