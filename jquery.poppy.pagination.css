@@ -11,6 +11,10 @@
  *    jquery-ui.js
  */
 
+.poppy_pagination a {
+	cursor: pointer;
+}
+
 div.poppy_pagination.options {
 	border-bottom: 1px solid #DDDDDD;
 	border-top: 1px solid #DDDDDD;
