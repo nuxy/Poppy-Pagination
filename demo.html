@@ -23,28 +23,23 @@
 	<script src="jquery.poppy.pagination.js"></script>
 	<script>
 	$(document).ready(function() {
-		(function genResults() {
-			$.getJSON('demo/1.json', function(data) {
+		var config = {
+			totalResults : 20,
+			perPage      : 5,
+			startWith    : 1
+		};
+
+		(function getResults(obj) {
+			$.getJSON('demo/' + (obj.nextPage || 1) + '.json', function(data) {
 				$('div.results')
 					.TidyTable('generate', {
 						columnTitles : ['ID','Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
 						columnValues : data
-					});
-
-				$('div.results')
-					.PoppyPagination({
-						totalResults : 20,
-						perPage      : 5,
-						startPage    : 1
-					}, doSomething);
+					})
+					.PoppyPagination(obj, getResults);
 			});
-		})();
+		})(config);
 	});
-
-	// do something
-	function doSomething(data) {
-		alert(data.startPage);
-	}
 	</script>
 
 	<!-- Javascript insert end -->
