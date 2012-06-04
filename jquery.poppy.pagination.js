@@ -33,13 +33,13 @@
 					var div2 = createPaginateElm( options, callback);
 
 					// .. header
-					var target = $(this).parent()
+					var node = $(this).parent()
 						.prepend(div1)
 						.prepend(div2);
 
 					// .. footer
-					div1.clone(true).appendTo(target);
-					div2.clone(true).appendTo(target);
+					div1.clone(true).appendTo(node);
+					div2.clone(true).appendTo(node);
 				}
 			});
 		}
