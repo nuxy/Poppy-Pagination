@@ -12,9 +12,9 @@
 
 (function($) {
 	var methods = {
-		init : function(config, callback) {
+		init : function(options, callback) {
 			return this.each(function() {
-				$(this).PoppyPagination('generate', config, callback);
+				$(this).PoppyPagination('generate', options, callback);
 			});
 		},
 
@@ -24,13 +24,13 @@
 			});
 		},
 
-		generate : function(config, callback) {
+		generate : function(options, callback) {
 			return this.each(function() {
-				if (config.totalResults > 0) {
+				if (options.totalResults > 0) {
 
 					// create page result elements
-					var div1 = createResultBarElm(config, callback);
-					var div2 = createPaginateElm( config, callback);
+					var div1 = createResultBarElm(options, callback);
+					var div2 = createPaginateElm( options, callback);
 
 					// .. header
 					var target = $(this).parent()
