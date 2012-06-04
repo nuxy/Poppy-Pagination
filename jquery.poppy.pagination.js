@@ -135,8 +135,9 @@
 		}
 
 		// always show 10 results, if available
-		var first_link = ((data.first - 1) / data.limit) - 6;
-		var last_link  = ((data.last  - 1) / data.limit) + 6;
+		var show_links = 10;
+		var first_link = (data.first / data.limit) - (show_links / 2);
+		var last_link  = (data.last  / data.limit) + (show_links / 2);
 
 		for (var i = 1; i <= data.pages; i++) {
 			if (first_link > i) { continue }
