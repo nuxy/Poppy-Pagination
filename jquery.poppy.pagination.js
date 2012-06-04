@@ -26,18 +26,19 @@
 
 		generate : function(options, callback) {
 			return this.each(function() {
-				if (options.totalResults > 0) {
+				var data = calcPageResults(options);
 
-					// create page result elements
-					var div1 = createResultBarElm(options, callback);
-					var div2 = createPaginateElm( options, callback);
+				// if results are available, create page elements
+				if (data.total > 0) {
+					var node = $(this).parent();
+					node.find('.poppy_pagination').remove();
 
-					// .. header
-					var node = $(this).parent()
-						.prepend(div1)
-						.prepend(div2);
+					// .. results header
+					var div1 = createResultBarElm(data, callback);
+					var div2 = createPaginateElm( data, callback);
+					node.prepend(div2, div1);
 
-					// .. footer
+					// .. results footer
 					div1.clone(true).appendTo(node);
 					div2.clone(true).appendTo(node);
 				}
@@ -63,29 +64,17 @@
 	 */
 	function createResultBarElm(data, callback) {
 
-		// calculate totals
-		var total = data.totalResults;
-		var limit = data.perPage;
-		var pages = getTotalRows(total, limit);
-
-		var first = data.startPage;
-		var last  = (first + limit) - 1;
-		last = (last <= total) ? last : total;
-
 		// create result detail elements
-		var strong1 = $('<strong>' + first + '</strong>');
-		var strong2 = $('<strong>' + last  + '</strong>');
-		var strong3 = $('<strong>' + total + '</strong>');
-
-		var obj = $('<div></div>')
-			.addClass('poppy_pagination options');
+		var strong1 = $('<strong>' + data.first + '</strong>');
+		var strong2 = $('<strong>' + data.last  + '</strong>');
+		var strong3 = $('<strong>' + data.total + '</strong>');
 
 		var span = $('<span></span>')
 			.append(strong1, ' - ', strong2, ' of ', strong3, ' found');
 
 		var form = $('<form></form>');
 
-		if (total > 10) {
+		if (data.total > 10) {
 
 			// .. select menu
 			var label = $('<label></label>').append('Viewing');
@@ -97,14 +86,13 @@
 
 			// .. options
 			$.each(opts, function() {
-				if (this < total) {
+				if (this < data.total) {
 					var option = $('<option>' + this + '</option>')
 						.attr('value', this);
-
 					select.append(option);
 
 					// if the option is selected
-					if (this == limit) {
+					if (this == data.limit) {
 						select.selectedIndex = this;
 					}
 				}
@@ -113,8 +101,7 @@
 			// attach menu options events
 			if (callback) {
 				select.change(function() {
-					data.perPage   = parseInt(this.value);
-					data.startPage = 1;
+					data.limit = parseInt(this.value);
 					callback(data);
 				});
 			}
@@ -122,8 +109,10 @@
 			form.append(select);
 		}
 
-		obj.append(span, form);
-		return obj;
+		// return HTML object
+		return $('<div></div>')
+			.addClass('poppy_pagination options')
+			.append(span, form);
 	}
 
 	/*
@@ -131,98 +120,62 @@
 	 */
 	function createPaginateElm(data, callback) {
 
-		// calculate totals
-		var total = data.totalResults;
-		var limit = data.perPage;
-		var pages = getTotalRows(total, limit);
-
-		var first = data.startPage;
-		var last  = (first + limit) - 1;
-		last = (last <= total) ? last : total;
-
-		// always show 10 results, if available
-		var first_link = ((first - 1) / limit) - 6;
-		var last_link  = ((last  - 1) / limit) + 6;
-
-		var curr_page = 0;
-
 		// create node elements
 		var list = $('<ul></ul>')
 			.addClass('poppy_pagination pages');
 
-		var temp = $('<li></li>')
+		var tmp = $('<li></li>')
 			.addClass('poppy_pagination crumbs');
 
-		for (var i = 0; i < pages; i++) {
+		// define onclick event
+		function onClickEvent(event) {
+			event.preventDefault();
+			data.start = event.data;
+			callback(data);
+		}
+
+		// always show 10 results, if available
+		var first_link = ((data.first - 1) / data.limit) - 6;
+		var last_link  = ((data.last  - 1) / data.limit) + 6;
+
+		for (var i = 1; i <= data.pages; i++) {
 			if (first_link > i) { continue }
 			if (last_link  < i) { continue }
 
 			var elm;
 
 			// .. page links
-			if (i == 0) {
-				if (first != 1) {
-					elm = $('<a>' + (i + 1) + '</a>').attr('href','#');
+			if (data.start != i) {
 
-					// bind mouse event
-					elm.bind('click', i, function(event) {
-						data.perPage   = limit;
-						data.startPage = limit * event.data;
-						callback(data);
-						return false;
-					});
-				}
-				else {
-					elm = $('<span>' + (i + 1) + '</span>');
+				// bind mouse event
+				elm = $('<a>' + i + '</a>')
+					.bind('click', i, onClickEvent);
+			}
+			else {
 
-					curr_page = i + 1;
-				}
-
-				temp.append(elm);
+				// disable crumb
+				elm = $('<span>' + i + '</span>');
 			}
 
-			// .. page links
-			if (i > 0) {
-				if (first != (i * limit) ) {
-					elm = $('<a>' + (i + 1) + '</a>').attr('href','#');
-
-					// bind mouse event
-					elm.bind('click', i, function(event) {
-						data.perPage   = limit;
-						data.startPage = limit * event.data;
-						callback(data);
-						return false;
-					});
-				}
-				else {
-					elm = $('<span>' + (i + 1) + '</span>');
-
-					curr_page = i + 1;
-				}
-
-				temp.append(elm);
-			}
+			tmp.append(elm);
 		}
 
 		// .. last page link
-		if (total > 0) {
+		if (data.total > 0) {
 			var item = $('<li></li>')
 				.addClass('polly_pagination last');
 
 			var elm;
 
-			if (curr_page > 1) {
-				elm = $('<a></a>').attr('href','#');
+			if (data.start > 1) {
 
 				// bind mouse event
-				elm.click(function() {
-					data.perPage   = limit;
-					data.startPage = ((curr_page * limit) - (limit * 2));
-					callback(data);
-					return false;
-				});
+				elm = $('<a></a>')
+					.click( (data.start - 1), onClickEvent);
 			}
 			else {
+
+				// disable button
 				elm = $('<span></span>');
 			}
 
@@ -233,33 +186,32 @@
 		}
 
 		// .. page crumbs (links)
-		if ( temp.children() ) {
-			list.append(temp);
+		if ( tmp.children() ) {
+			list.append(tmp);
 
-			if (pages == 1) {
-				temp.css('visibility','hidden');
+			if (data.pages == 1) {
+				tmp.css('visibility','hidden');
 			}
 		}
 
 		// .. next page link
-		if (total > 0) {
+		if (data.total > 1) {
 			var item = $('<li></li>')
 				.addClass('poppy_pagination next');
 
 			var elm;
 
-			if ( (pages > 1) && (total > (curr_page * limit)) ) {
-				elm = $('<a></a>').attr('href','#');
+			// (data.pages > 1) && (data.total > (data.page * data.limit))
+
+			if (data.pages != data.start) {
 
 				// bind mouse event
-				elm.click(function() {
-					data.perPage   = limit;
-					data.startPage = curr_page * limit;
-					callback(data);
-					return false;
-				});
+				elm = $('<a></a>')
+					.click( (data.start + 1), onClickEvent);
 			}
 			else {
+
+				// disable button
 				elm = $('<span></span>');
 			}
 
@@ -270,6 +222,20 @@
 		}
 
 		return list;
+	}
+
+	/*
+	 * Calculate page totals and return object of results
+	 */
+	function calcPageResults(settings) {
+		var obj = {};
+		obj.total = settings.totalResults;
+		obj.limit = settings.perPage;
+		obj.start = settings.startPage || 1;
+		obj.pages = getTotalRows(obj.total, obj.limit);
+		obj.first = obj.start * obj.limit + 1 - obj.limit;
+		obj.last  = ((obj.first + obj.limit - 1) < obj.total) ? (obj.first + obj.limit - 1) : obj.total;
+		return obj;
 	}
 
 	/*
