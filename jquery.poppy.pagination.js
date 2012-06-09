@@ -74,20 +74,22 @@
 
 		var form = $('<form></form>');
 
-		if (data.total > 10) {
+		if (data.total > 10 && !data.limit) {
 
 			// .. select menu
 			var label = $('<label></label>').append('Viewing');
 			form.append(label);
 
-			var select = $('<select></select>');
+			var option = $('<option>-</option>');
+			var select = $('<select></select>')
+				.append(option);
 
 			var opts = [ 10, 20, 30, 40, 50 ];
 
 			// .. options
 			$.each(opts, function() {
-				if (this < data.total) {
-					var option = $('<option>' + this + '</option>')
+				if (this <= data.total) {
+					option = $('<option>' + this + '</option>')
 						.attr('value', this);
 					select.append(option);
 
@@ -201,8 +203,6 @@
 				.addClass('poppy_pagination next');
 
 			var elm;
-
-			// (data.pages > 1) && (data.total > (data.page * data.limit))
 
 			if (data.pages != data.start) {
 
