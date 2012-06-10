@@ -3,7 +3,7 @@
 #container {
 	font-family: Tienne, Sans-Serif;
 	margin: 10% auto 0px auto;
-	width: 800px;
+	width: 716px;
 }
 
 /* customize */
@@ -34,7 +34,7 @@ ul.poppy_pagination.pages li a {
 }
 
 ul.poppy_pagination.pages li.crumbs {
-	width: 600px;
+	width: 510px;
 }
 
 ul.poppy_pagination.pages li.crumbs a,
