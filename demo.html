@@ -25,6 +25,8 @@
 	$(document).ready(function() {
 		(function getResults(obj) {
 			$.getJSON('demo/' + (obj.start || 1) + '.json', function(data) {
+
+				// use in conjuction with Tidy-Table results
 				$('div.results')
 					.TidyTable('generate', {
 						columnTitles : ['ID','Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
