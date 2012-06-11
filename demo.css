@@ -18,6 +18,10 @@ div.poppy_pagination.options {
 	width: 100%;
 }
 
+div.poppy_pagination.options span {
+	margin-left: 10px;
+}
+
 div.poppy_pagination.options span strong {
 	color: #787878;
 }
