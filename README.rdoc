@@ -1,6 +1,21 @@
 = Poppy Pagination
 
-This project is currently in development with no set time of release.
+A simple way to generate next and last page buttons, breadcrumb links, and per-page result totals, as HTML.
+
+http://github.com/nuxy/Poppy-Pagination/raw/master/preview.jpg
+
+== Features
+
+- Extensible HTML/CSS interface.
+- Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.
+- Easy to set-up and customize.
+- Can be used to wrap any pre-existing set of results.
+- Customizable callback function for post-processing link events.
+- Fast and lightweight (jQuery plug-in *only 4 kB)
+
+== Installation
+
+Please refer to the {README.html}[http://labs.mbrooks.info/demos/Poppy-Pagination] file for more information about this package.
 
 == Author
 
