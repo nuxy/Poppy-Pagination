@@ -2,7 +2,7 @@
 
 #container {
 	margin: 10% auto 0px auto;
-	width: 725px;
+	width: 800px;
 }
 
 /* customize */
@@ -20,23 +20,16 @@ div.poppy_pagination.options span {
 	margin-left: 10px;
 }
 
+div.poppy_pagination.options {
+	width: 100%;
+}
+
 div.poppy_pagination.options span strong {
 	color: #787878;
 }
 
-div.poppy_pagination.options form select {
-}
-
-ul.poppy_pagination.pages li {
-	padding: 4px 0px 4px 0px;
-}
-
 ul.poppy_pagination.pages li a {
 	text-decoration: none;
-}
-
-ul.poppy_pagination.pages li.crumbs {
-	width: 500px;
 }
 
 ul.poppy_pagination.pages li.crumbs a,
@@ -62,19 +55,7 @@ ul.poppy_pagination.pages li.next span {
 
 /* Tidy-Table overrides */
 
-div.poppy_pagination.options,
-ul.poppy_pagination.pages,
-div.results {
-	clear: both;
-	margin: 0px 20px 0px 20px;
-	width: 100%;
-}
-
-div.poppy_pagination.options {
-	margin: 20px;
-}
-
 table.tidy_table {
-	margin: 0px auto 0px auto;
+	clear: both;
 	width: 100%;
 }

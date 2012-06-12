@@ -22,10 +22,7 @@ div.poppy_pagination.options {
 	color: #999999;
 	float: left;
 	height: 19px;
-	margin-left: 5px;
-	margin-top: 10px;
-	padding: 4px;
-	padding-left: 6px;
+	margin: 10px 0px 10px 0px;
 	width: 100%;
 }
 
@@ -58,14 +55,14 @@ ul.poppy_pagination.pages {
 	float: left;
 	height: 20px;
 	list-style-type: none;
-	margin-left: 8px;
-	margin-top: 15px;
-	padding: 2px;
+	margin: 10px 0px 10px 0px;
+	position: relative;
 	width: 100%;
 }
 
 ul.poppy_pagination.pages li {
 	float: left;
+	padding: 4px 0px 4px 0px;
 }
 
 ul.poppy_pagination.pages li a {
@@ -73,8 +70,11 @@ ul.poppy_pagination.pages li a {
 }
 
 ul.poppy_pagination.pages li.crumbs {
+	left: 0px;
+	position: absolute;
 	text-align: center;
-	width: 800px;
+	width: 100%;
+	z-index: 1;
 }
 
 ul.poppy_pagination.pages li.crumbs a,
@@ -90,16 +90,21 @@ ul.poppy_pagination.pages li.crumbs span {
 	font-weight: bold;
 }
 
+ul.poppy_pagination.pages li.last,
+ul.poppy_pagination.pages li.next {
+	position: relative;
+	width: 100px;
+	z-index: 2;
+}
+
 ul.poppy_pagination.pages li.last {
 	float: left;
 	text-align: left;
-	width: 100px;
 }
 
 ul.poppy_pagination.pages li.next {
 	float: right;
 	text-align: right;
-	width: 100px;
 }
 
 ul.poppy_pagination.pages li.last span,
