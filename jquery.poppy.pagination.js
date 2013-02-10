@@ -25,24 +25,22 @@
 		},
 
 		"generate" : function(options, callback) {
-			return this.each(function() {
-				var data = calcPageResults(options);
+			var data = calcPageResults(options);
 
-				// if results are available, create page elements
-				if (data.total > 0) {
-					var node = $(this).parent();
-					node.find('.poppy_pagination').remove();
+			// if results are available, create page elements
+			if (data.total > 0) {
+				var node = $(this).parent();
+				node.find('.poppy_pagination').remove();
 
-					// .. results header
-					var div1 = createResultBarElm(data, callback);
-					var div2 = createPaginateElm( data, callback);
-					node.prepend(div2, div1);
+				// .. results header
+				var div1 = createResultBarElm(data, callback);
+				var div2 = createPaginateElm( data, callback);
+				node.prepend(div2, div1);
 
-					// .. results footer
-					div1.clone(true).appendTo(node);
-					div2.clone(true).appendTo(node);
-				}
-			});
+				// .. results footer
+				div1.clone(true).appendTo(node);
+				div2.clone(true).appendTo(node);
+			}
 		}
 	};
 
