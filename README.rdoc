@@ -16,7 +16,7 @@ http://github.com/nuxy/Poppy-Pagination/raw/master/preview.jpg
 
 == Installation
 
-Please refer to the {README.html}[http://labs.mbrooks.info/demos/Poppy-Pagination] file for more information about this package.
+Download the latest {sources}[https://github.com/nuxy/Poppy-Pagination/tags] and refer to the {README}[http://labs.mbrooks.info/demos/Poppy-Pagination/README.html] for more information about this package.
 
 == Author
 
