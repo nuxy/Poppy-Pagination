@@ -2,7 +2,7 @@
  *  Poppy Pagination
  *  Generate page options/results using pre-existing content
  *
- *  Copyright 2012, Marc S. Brooks (http://mbrooks.info)
+ *  Copyright 2012-2013, Marc S. Brooks (http://mbrooks.info)
  *  Licensed under the MIT license:
  *  http://www.opensource.org/licenses/mit-license.php
  *
@@ -12,19 +12,19 @@
 
 (function($) {
 	var methods = {
-		init : function(options, callback) {
+		"init" : function(options, callback) {
 			return this.each(function() {
 				$(this).PoppyPagination('generate', options, callback);
 			});
 		},
 
-		destroy : function() {
+		"destroy" : function() {
 			return this.each(function() {
 				$(this).removeData();
 			});
 		},
 
-		generate : function(options, callback) {
+		"generate" : function(options, callback) {
 			return this.each(function() {
 				var data = calcPageResults(options);
 
