@@ -12,9 +12,9 @@
 
 (function($) {
 	var methods = {
-		"init" : function(options, callback) {
+		"init" : function() {
 			return this.each(function() {
-				$(this).PoppyPagination('generate', options, callback);
+				genResults(arguments);
 			});
 		},
 
@@ -22,25 +22,6 @@
 			return this.each(function() {
 				$(this).removeData();
 			});
-		},
-
-		"generate" : function(options, callback) {
-			var data = calcPageResults(options);
-
-			// if results are available, create page elements
-			if (data.total > 0) {
-				var node = $(this).parent();
-				node.find('.poppy_pagination').remove();
-
-				// .. results header
-				var div1 = createResultBarElm(data, callback);
-				var div2 = createPaginateElm( data, callback);
-				node.prepend(div2, div1);
-
-				// .. results footer
-				div1.clone(true).appendTo(node);
-				div2.clone(true).appendTo(node);
-			}
 		}
 	};
 
@@ -58,14 +39,36 @@
 	};
 
 	/*
+	 * Generate last/next result pages
+	 */
+	function genResults(config, callback) {
+		var data = calcPageResults(config);
+
+		// if results are available, create page elements
+		if (data.total > 0) {
+			var node = $(this).parent();
+			node.find('.poppy_pagination').remove();
+
+			// .. results header
+			var div1 = createResultBarElm(data, callback),
+				div2 = createPaginateElm( data, callback);
+			node.prepend(div2, div1);
+
+			// .. results footer
+			div1.clone(true).appendTo(node);
+			div2.clone(true).appendTo(node);
+		}
+	}
+
+	/*
 	 * Create page results bar elements
 	 */
 	function createResultBarElm(data, callback) {
 
 		// create result detail elements
-		var strong1 = $('<strong>' + data.first + '</strong>');
-		var strong2 = $('<strong>' + data.last  + '</strong>');
-		var strong3 = $('<strong>' + data.total + '</strong>');
+		var strong1 = $('<strong>' + data.first + '</strong>'),
+			strong2 = $('<strong>' + data.last  + '</strong>'),
+			strong3 = $('<strong>' + data.total + '</strong>');
 
 		var span = $('<span></span>')
 			.append(strong1, ' - ', strong2, ' of ', strong3, ' found');
@@ -78,8 +81,8 @@
 			var label = $('<label></label>').append('Viewing');
 			form.append(label);
 
-			var option = $('<option>-</option>');
-			var select = $('<select></select>')
+			var option = $('<option>-</option>'),
+				select = $('<select></select>')
 				.append(option);
 
 			var opts = [ 10, 20, 30, 40, 50 ];
@@ -135,13 +138,13 @@
 		}
 
 		// always show 10 results, if available
-		var show_links = 10;
-		var first_link = (data.first / data.limit) - (show_links / 2);
-		var last_link  = (data.last  / data.limit) + (show_links / 2);
+		var show_links = 10,
+			first_link = (data.first / data.limit) - (show_links / 2),
+			last_link  = (data.last  / data.limit) + (show_links / 2);
 
 		for (var i = 1; i <= data.pages; i++) {
-			if (first_link > i) { continue }
-			if (last_link  < i) { continue }
+			if (first_link > i) continue;
+			if (last_link  < i) continue;
 
 			var elm;
 
