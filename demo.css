@@ -59,3 +59,7 @@ table.tidy_table {
 	clear: both;
 	width: 100%;
 }
+
+table.tidy_table tbody {
+	cursor: auto;
+}
