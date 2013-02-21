@@ -12,16 +12,20 @@
 
 (function($) {
 	var methods = {
-		"init" : function() {
-			return this.each(function() {
-				genResults(arguments);
-			});
+		"init" : function(config, callback) {
+
+			// default settings
+			$.extend({
+				totalResults : 0,
+				perPage      : 10,
+				startPage    : 1
+			}, config);
+
+			genResults( $(this), config, callback);
 		},
 
 		"destroy" : function() {
-			return this.each(function() {
-				$(this).removeData();
-			});
+			$(this).removeData();
 		}
 	};
 
@@ -41,22 +45,23 @@
 	/*
 	 * Generate last/next result pages
 	 */
-	function genResults(config, callback) {
-		var data = calcPageResults(config);
+	function genResults($this, data, callback) {
+		var res = calcPageResults(data);
 
 		// if results are available, create page elements
-		if (data.total > 0) {
-			var node = $(this).parent();
-			node.find('.poppy_pagination').remove();
+		if (res.total > 0) {
+			var node  = $this.find('.poppy_pagination');
+
+			if (node[0]) node.remove();
 
 			// .. results header
-			var div1 = createResultBarElm(data, callback),
-				div2 = createPaginateElm( data, callback);
-			node.prepend(div2, div1);
+			var div1 = createResultBarElm(res, callback),
+				div2 = createPaginateElm( res, callback);
+			$this.prepend(div2, div1);
 
 			// .. results footer
-			div1.clone(true).appendTo(node);
-			div2.clone(true).appendTo(node);
+			div1.clone(true).appendTo($this);
+			div2.clone(true).appendTo($this);
 		}
 	}
 
