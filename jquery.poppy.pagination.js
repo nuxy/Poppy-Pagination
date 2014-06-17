@@ -1,8 +1,8 @@
-/*
+/**
  *  Poppy Pagination
  *  Generate page options/results using pre-existing content
  *
- *  Copyright 2012-2013, Marc S. Brooks (http://mbrooks.info)
+ *  Copyright 2012-2014, Marc S. Brooks (http://mbrooks.info)
  *  Licensed under the MIT license:
  *  http://www.opensource.org/licenses/mit-license.php
  *
@@ -21,7 +21,7 @@
 				startPage    : 1
 			}, config);
 
-			genResults( $(this), config, callback);
+			genResults($(this), config, callback);
 		},
 
 		"destroy" : function() {
@@ -38,12 +38,15 @@
 			return methods.init.apply(this, arguments);
 		}
 		else {
-			$.error('Method ' +  method + ' does not exist on jQuery.PoppyPagination');
+			$.error('Method ' +  method + ' does not exist in jQuery.PoppyPagination');
 		}
 	};
 
-	/*
+	/**
 	 * Generate last/next result pages
+	 * @param Object $this
+	 * @param Object data
+	 * @param Function callback
 	 */
 	function genResults($this, data, callback) {
 		var res = calcPageResults(data);
@@ -65,8 +68,11 @@
 		}
 	}
 
-	/*
+	/**
 	 * Create page results bar elements
+	 * @param Object data
+	 * @param Function callback
+	 * @returns Object
 	 */
 	function createResultBarElm(data, callback) {
 
@@ -123,8 +129,11 @@
 			.append(span, form);
 	}
 
-	/*
+	/**
 	 * Create the first/last and subsequent page links
+	 * @param Object data
+	 * @param Function callback
+	 * @returns Object
 	 */
 	function createPaginateElm(data, callback) {
 
@@ -158,7 +167,7 @@
 
 				// bind mouse event
 				elm = $('<a>' + i + '</a>')
-					.bind('click', i, onClickEvent);
+					.on('click', i, onClickEvent);
 			}
 			else {
 
@@ -180,7 +189,7 @@
 
 				// bind mouse event
 				elm = $('<a></a>')
-					.click( (data.start - 1), onClickEvent);
+					.on('click', (data.start - 1), onClickEvent);
 			}
 			else {
 
@@ -195,7 +204,7 @@
 		}
 
 		// .. page crumbs (links)
-		if ( tmp.children() ) {
+		if (tmp.children()) {
 			list.append(tmp);
 
 			if (data.pages == 1) {
@@ -214,7 +223,7 @@
 
 				// bind mouse event
 				elm = $('<a></a>')
-					.click( (data.start + 1), onClickEvent);
+					.on('click', (data.start + 1), onClickEvent);
 			}
 			else {
 
@@ -231,8 +240,10 @@
 		return list;
 	}
 
-	/*
+	/**
 	 * Calculate page totals and return object of results
+	 * @param Object settings
+	 * @returns Object
 	 */
 	function calcPageResults(settings) {
 		var obj = {};
@@ -245,8 +256,11 @@
 		return obj;
 	}
 
-	/*
+	/**
 	 * Return the row total
+	 * @param String total
+	 * @param Number limit
+	 * @returns Number
 	 */
 	function getTotalRows(total, limit) {
 		var count = Math.round(total / limit);
