@@ -57,14 +57,21 @@
 
 			if (node[0]) node.remove();
 
-			// .. results header
+			// .. header
+			var block1 = $('<div></div>')
+				.addClass('poppy_pagination');
+
 			var div1 = createResultBarElm(res, callback),
 				div2 = createPaginateElm( res, callback);
-			$this.prepend(div2, div1);
+			block1.append(div2, div1);
 
-			// .. results footer
-			div1.clone(true).appendTo($this);
-			div2.clone(true).appendTo($this);
+			$this.prepend(block1);
+
+			// .. footer
+			var block2 = block1.clone(true);
+			block2.append(block2.children().get().reverse());
+
+			$this.append(block2);
 		}
 	}
 
@@ -125,7 +132,7 @@
 
 		// return HTML object
 		return $('<div></div>')
-			.addClass('poppy_pagination options')
+			.addClass('options')
 			.append(span, form);
 	}
 
@@ -139,10 +146,10 @@
 
 		// create node elements
 		var list = $('<ul></ul>')
-			.addClass('poppy_pagination pages');
+			.addClass('pages');
 
 		var tmp = $('<li></li>')
-			.addClass('poppy_pagination crumbs');
+			.addClass('crumbs');
 
 		// define onclick event
 		function onClickEvent(event) {
@@ -181,7 +188,7 @@
 		// .. last page link
 		if (data.total > 0) {
 			var item = $('<li></li>')
-				.addClass('polly_pagination last');
+				.addClass('last');
 
 			var elm;
 
@@ -215,7 +222,7 @@
 		// .. next page link
 		if (data.total > 1) {
 			var item = $('<li></li>')
-				.addClass('poppy_pagination next');
+				.addClass('next');
 
 			var elm;
 
