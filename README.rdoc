@@ -1,4 +1,4 @@
-= Poppy Pagination
+= Poppy Pagination {<img src="https://travis-ci.org/nuxy/Poppy-Pagination.svg?branch=updates" alt="Build Status" />}[https://travis-ci.org/nuxy/Poppy-Pagination]
 
 A simple way to generate next and last page buttons, breadcrumb links, and per-page result totals, as HTML.
 
@@ -12,7 +12,7 @@ http://github.com/nuxy/Poppy-Pagination/raw/master/preview.jpg
 - Easy to set-up and customize.
 - Can be used to wrap any pre-existing set of results.
 - Customizable callback function for post-processing link events.
-- Fast and lightweight (jQuery plug-in *only 4 kB)
+- Fast and lightweight (jQuery plug-in *only 4.2 kB)
 
 == Installation
 
