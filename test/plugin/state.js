@@ -1,15 +1,15 @@
 test('Load State', function() {
-	ok($(page).find('li.last').has('span'), "Result link 'Last' is disabled");
-	ok($(page).find('li.next').has('a'),    "Result link 'Next' is enabled");
+	ok($(page).find('li.last').has('span'), "Result link 'Last Page' is disabled");
+	ok($(page).find('li.next').has('a'),    "Result link 'Next Page' is enabled");
 
-	var crumbs = $(page).find('li.crumbs').first().children();
+	var crumbs = $(page).find('li.crumbs').first();
 
-	equal(crumbs.size(), 4, 'Total of 4 pages available');
+	equal(crumbs.children().size(), 4, 'Total of 4 pages available');
 
-	ok(crumbs.first().is('span'),     "1st result '1' is disabled");
-	ok(crumbs.find('a:nth-child(1)'), "2nd result '2' is enabled");
-	ok(crumbs.find('a:nth-child(2)'), "3rd result '3' is enabled");
-	ok(crumbs.find('a:nth-child(3)'), "4th result '4' is enabled");
+	ok(crumbs.find('span:nth-child(2)'), "1st result '1' is disabled");
+	ok(crumbs.find('a:nth-child(1)'),    "2nd result '2' is enabled");
+	ok(crumbs.find('a:nth-child(2)'),    "3rd result '3' is enabled");
+	ok(crumbs.find('a:nth-child(3)'),    "4th result '4' is enabled");
 
 	var options = $(page).find('div.options').first();
 
