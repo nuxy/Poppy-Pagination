@@ -13,5 +13,5 @@ module('Poppy-Pagination', {
 });
 
 test('Generate HTML', function() {
-	equal($('#qunit-fixture').find('.poppy_pagination').length, 2, 'Pagination elements created');
+	equal($('#qunit-fixture').find(page).length, 2, 'Pagination elements created');
 });
