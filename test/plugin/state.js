@@ -1,6 +1,6 @@
 test('Load State', function() {
-	ok($(page).find('li.last').has('span'), "Result link 'Last Page' is disabled");
-	ok($(page).find('li.next').has('a'),    "Result link 'Next Page' is enabled");
+	ok($(page).find('li.last span').length, "Result link 'Last Page' is disabled");
+	ok($(page).find('li.next a').length,    "Result link 'Next Page' is enabled");
 
 	var crumbs = $(page).find('li.crumbs').first();
 
