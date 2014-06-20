@@ -1,25 +1,33 @@
 module('Poppy-Pagination', {
 	setup : function() {
+		if (setup) return;   // skip process
+
 		(function getResults(obj) {
 			stop();
 
 			$.getJSON('demo/' + (obj.start || 1) + '.json', function(data) {
-				$('#qunit-fixture')
+				$('#qunit-custom')
 					.PoppyPagination({
 						totalResults : 20,
 						perPage      : 5,
 						startPage    : obj.start
 					}, getResults);
 
+				// hide test elements
+				$('#qunit-custom').hide(0);
+
 				start();
 			});
 		})({});
-	},
-	teardown : function() {
-		// do nothing - preserve element structure
+
+		setup = true;
 	}
 });
 
+done(function() {
+	$('#qunit-custom').empty();
+});
+
 test('Generate HTML', function() {
-	equal($('#qunit-fixture').find(page).length, 2, 'Pagination elements created');
+	equal($('#qunit-custom').find(page).length, 2, 'Pagination elements created');
 });
