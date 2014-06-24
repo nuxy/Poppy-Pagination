@@ -54,9 +54,9 @@
 
 <h2>Set-up</h2>
 
-<p>It's as simple as defining the target element <code>#container</code> using the <a href="http://api.jquery.com/category/selectors">jQuery selector</a> and passing tabular data as JSON.   An optional callback can also be defined for post-processing row/column data on mouse click events.</p>
+<p>It's as simple as defining the target element <code>#container</code> using the <a href="http://api.jquery.com/category/selectors">jQuery selector</a> and defining page result options.  An optional callback can also be defined for post-processing row/column data on mouse click events.</p>
 
-<pre>$(selector).PoppyPagination(<a href="#options"><em>options</em></a>, <a href="#callback"><em>callback</em></a>);</pre>
+<pre>$(selector).PoppyPagination(<a href="#config"><em>config</em></a>, <a href="#callback"><em>callback</em></a>);</pre>
 
 <h2>Source Code</h2>
 
@@ -87,7 +87,7 @@ $(document).ready(function() {
 
 &lt;div id="container"&gt;&lt;/div&gt;</pre>
 
-<h4>Use Example 2 - Combine <a href="https://github.com/nuxy/Tidy-Table">Tidy-Table</a> results with page output</h4>
+<h4>Use Example 2 - Request remote data source, generate <a href="https://github.com/nuxy/Tidy-Table">Tidy-Table</a> results, and paginate</h4>
 
 <pre>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
 
@@ -98,40 +98,35 @@ $(document).ready(function() {
 &lt;script src="/path/to/jquery.tidy.table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	var data = [
-		['1','1A','1B','1C','1D','1E'],
-		['2','2A','2B','2C','2D','2E'],
-		['3','3A','3B','3C','3D','3E'],
-		['4','4A','4B','4C','4D','4E'],
-		['5','5A','5B','5C','5D','5E'],
-		['6','6A','6B','6C','6D','6E'],
-		['7','7A','7B','7C','7D','7E'],
-		['8','8A','8B','8C','8D','8E'],
-		['9','9A','9B','9C','9D','9E']
-	];
+	(function getResults(obj) {
+		$.getJSON({
+			url     : '/path/to/script',
+			data    : $.param(obj),
+			success : function(data) {
 
-	$('#container')
-		.TidyTable({
-			columnTitles : ['Column A','Column B','Column C','Column D','Column E'],
-			columnValues : data
-		})
-		.PoppyPagination({
-			totalResults : data.length,
-			perPage      : 3,
-			startPage    : 1
-		}, doSomething);
-});
+				// use in conjuction with Tidy-Table results
+				$('#container')
+					.TidyTable({
+						columnTitles : data.columns,
+						columnValues : data.values
+					})
+					.PoppyPagination({
+						totalResults : 20,
+						perPage      : 5,
+						startPage    : (obj.start || 1)
+					}, getResults);
+			});
+		});
+	})({});
 &lt;/script&gt;
 
 ..
 
-&lt;div id="container"&gt;
-	&lt;div class="results"&gt;&lt;/div&gt;
-&lt;/div&gt;</pre>
+&lt;div id="container"&gt;&lt;/div&gt;</pre>
 
-<a name="options"></a>
+<a name="config"></a>
 
-<h2>Plug-in Settings</h2>
+<h2>Configuration</h2>
 
 <p>The following options can be passed to the plug-in main function as JSON</p>
 
@@ -143,12 +138,12 @@ $(document).ready(function() {
 	</tr>
 	<tr>
 		<td>totalResults</td>
-		<td>total number of results to output</td>
+		<td>total number of results in data-set</td>
 		<td>none</td>
 	</tr>
 	<tr>
 		<td>perPage</td>
-		<td>total number of results to output per page</td>
+		<td>total number of results to output per page (optional)</td>
 		<td>none</td>
 	</tr>
 	<tr>
@@ -158,11 +153,13 @@ $(document).ready(function() {
 	</tr>
 </table>
 
+<p>The <code>perPage</code> value is optional and is to be used in cases where you are processing a full data-set vs requesting as parts.  When this option is not provided a select menu will be created to allows the user to define the per-page result.</p>
+
 <a name="callback"></a>
 
 <h2>Callback Processing</h2>
 
-<p>When a callback function is defined a response object is returned.  The values of this object reflect the current page results at the time of the event.  The following example corresponds to the <a href="#examples">examples</a> provided above.</p>
+<p>When a callback function is defined a response object is returned.  The values of this object reflect the current page results at the time of the event.  The following code corresponds to the <a href="#examples">examples</a> provided above.  This object can be used to query new data from server-side application, or to pre-process data of returned results.  For example, parsing object data so that only specific page results are visible.</p>
 
 <pre>function doSomething(obj) {
 
@@ -189,7 +186,7 @@ $(document).ready(function() {
 	</tr>
 	<tr>
 		<td>total</td>
-		<td>total number of results to output</td>
+		<td>total number of results in data-set</td>
 	</tr>
 	<tr>
 		<td>pages</td>
