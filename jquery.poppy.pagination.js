@@ -14,8 +14,8 @@
 	var methods = {
 		"init" : function(config, callback) {
 
-			// default settings
-			$.extend({
+			// config defaults
+			config = $.extend({
 				totalResults : 0,
 				perPage      : 10,
 				startPage    : 1
@@ -93,7 +93,7 @@
 
 		var form = $('<form></form>');
 
-		if (data.total > 10 && !data.limit) {
+		if (data.total > 10 && data.limit > 1) {
 
 			// .. select menu
 			var label = $('<label></label>').append('Viewing');
@@ -121,7 +121,7 @@
 
 			// attach menu options events
 			if (callback) {
-				select.change(function() {
+				select.on('change', function() {
 					data.limit = parseInt(this.value);
 					callback(data);
 				});
