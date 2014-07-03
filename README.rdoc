@@ -1,4 +1,4 @@
-= Poppy Pagination {<img src="https://travis-ci.org/nuxy/Poppy-Pagination.svg?branch=updates" alt="Build Status" />}[https://travis-ci.org/nuxy/Poppy-Pagination]
+= Poppy Pagination {<img src="https://travis-ci.org/nuxy/Poppy-Pagination.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/nuxy/Poppy-Pagination]
 
 A simple way to generate next and last page buttons, breadcrumb links, and per-page result totals, as HTML.
 
