@@ -211,7 +211,6 @@ test('Breadcrumbs', function() {
 				equal(options3.find('strong:nth-child(1)').text(), 16, "First result item is '16'");
 				equal(options3.find('strong:nth-child(2)').text(), 20, "Last result item is '20'");
 
-
 				start();
 			}, 500);
 		}, 500);
