@@ -12,7 +12,7 @@ http://github.com/nuxy/Poppy-Pagination/raw/master/preview.jpg
 - Easy to set-up and customize.
 - Can be used to wrap any pre-existing set of results.
 - Customizable callback function for post-processing link events.
-- Fast and lightweight (jQuery plug-in *only 4.2 kB)
+- Fast and lightweight (jQuery plug-in *only 4.3 kB)
 
 == Installation
 
