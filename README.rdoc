@@ -16,7 +16,11 @@ A simple way to generate next and last page buttons, breadcrumb links, and per-p
 
 == Installation
 
-Download the latest {sources}[https://github.com/nuxy/Poppy-Pagination/tags] and refer to the {README}[https://labs.mbrooks.info/demos/Poppy-Pagination/README.html] for more information about this package.
+This package can be easily installed using Bower.
+
+    $ bower install poppy-pagination
+
+Please refer to the {README}[https://labs.mbrooks.info/demos/Poppy-Pagination/README.html] for more information about this package.
 
 == Author
 
