@@ -12,7 +12,7 @@ A simple way to generate next and last page buttons, breadcrumb links, and per-p
 - Easy to set-up and customize.
 - Can be used to wrap any pre-existing set of results.
 - Customizable callback function for post-processing link events.
-- Fast and lightweight (jQuery plug-in *only 4.3 kB)
+- Fast and lightweight (jQuery plug-in *only 4.6 kB)
 
 == Installation
 
