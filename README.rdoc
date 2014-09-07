@@ -16,7 +16,7 @@ A simple way to generate next and last page buttons, breadcrumb links, and per-p
 
 == Installation
 
-This package can be easily installed using Bower.
+This package can be easily installed using {Bower}[http://bower.io].
 
     $ bower install poppy-pagination
 
