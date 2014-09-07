@@ -1,6 +1,6 @@
 {
   "name": "poppy-pagination",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "homepage": "https://github.com/nuxy/Poppy-Pagination",
   "description": "Generate page options/results using pre-existing content",
   "main": "jquery.poppy.pagination.js",
@@ -14,6 +14,7 @@
     "**/.*",
     "*.rdoc",
     "Rakefile",
-    "test"
+    "test",
+    "test.html"
   ]
 }
