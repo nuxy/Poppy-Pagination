@@ -11,7 +11,7 @@
  */
 
 if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
-	alert('Poppy-Pagination requires jQuery 1.8.3 or greater.');
+	throw new Error('Poppy-Pagination requires jQuery 1.8.3 or greater.');
 }
 
 (function($) {
@@ -48,9 +48,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Generate last/next result pages
-	 * @param Object $this
-	 * @param Object data
-	 * @param Function callback
+	 * @param {Object} $this
+	 * @param {Object} data
+	 * @param {Function} callback
 	 */
 	function genResults($this, data, callback) {
 		var res = calcPageResults(data);
@@ -81,9 +81,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Create page results bar elements
-	 * @param Object data
-	 * @param Function callback
-	 * @returns Object
+	 * @param {Object} data
+	 * @param {Function} callback
+	 * @returns {Object}
 	 */
 	function createResultBarElm(data, callback) {
 
@@ -142,9 +142,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Create the first/last and subsequent page links
-	 * @param Object data
-	 * @param Function callback
-	 * @returns Object
+	 * @param {Object} data
+	 * @param {Function} callback
+	 * @returns {Object}
 	 */
 	function createPaginateElm(data, callback) {
 
@@ -253,8 +253,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Calculate page totals and return object of results
-	 * @param Object settings
-	 * @returns Object
+	 * @param {Object} settings
+	 * @returns {Object}
 	 */
 	function calcPageResults(settings) {
 		var obj = {};
@@ -269,9 +269,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 	/**
 	 * Return the row total
-	 * @param String total
-	 * @param Number limit
-	 * @returns Number
+	 * @param {String} total
+	 * @param {Number} limit
+	 * @returns {Number}
 	 */
 	function getTotalRows(total, limit) {
 		var count = Math.round(total / limit);
