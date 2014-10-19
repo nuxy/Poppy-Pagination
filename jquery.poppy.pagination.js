@@ -163,56 +163,60 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		}
 
 		// always show 10 results, if available
-		var show_links = 10,
-			first_link = (data.first / data.limit) - (show_links / 2),
-			last_link  = (data.last  / data.limit) + (show_links / 2);
+		(function() {
+			var show_links = 10,
+				first_link = (data.first / data.limit) - (show_links / 2),
+				last_link  = (data.last  / data.limit) + (show_links / 2);
 
-		for (var i = 1; i <= data.pages; i++) {
-			if (first_link > i) continue;
-			if (last_link  < i) continue;
+			for (var i = 1; i <= data.pages; i++) {
+				if (first_link > i) continue;
+				if (last_link  < i) continue;
 
-			var elm;
+				var link = null;
 
-			// .. page links
-			if (data.start != i) {
+				// .. page links
+				if (data.start != i) {
 
-				// bind mouse event
-				elm = $('<a>' + i + '</a>')
-					.on('click', i, onClickEvent);
+					// bind mouse event
+					link = $('<a>' + i + '</a>')
+						.on('click', i, onClickEvent);
+				}
+				else {
+
+					// disable crumb
+					link = $('<span>' + i + '</span>');
+				}
+
+				tmp.append(link);
 			}
-			else {
-
-				// disable crumb
-				elm = $('<span>' + i + '</span>');
-			}
-
-			tmp.append(elm);
-		}
+		})();
 
 		// .. last page link
-		if (data.total > 0) {
-			var item = $('<li></li>')
-				.addClass('last');
+		(function() {
+			if (data.total > 0) {
+				var item = $('<li></li>')
+					.addClass('last');
 
-			var elm;
+				var link = null;
 
-			if (data.start > 1) {
+				if (data.start > 1) {
 
-				// bind mouse event
-				elm = $('<a></a>')
-					.on('click', (data.start - 1), onClickEvent);
+					// bind mouse event
+					link = $('<a></a>')
+						.on('click', (data.start - 1), onClickEvent);
+				}
+				else {
+
+					// disable button
+					link = $('<span></span>');
+				}
+
+				link.append('Last Page');
+
+				item.append(link);
+				list.append(item);
 			}
-			else {
-
-				// disable button
-				elm = $('<span></span>');
-			}
-
-			elm.append('Last Page');
-
-			item.append(elm);
-			list.append(item);
-		}
+		})();
 
 		// .. page crumbs (links)
 		if (tmp.children()) {
@@ -224,29 +228,31 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		}
 
 		// .. next page link
-		if (data.total > 1) {
-			var item = $('<li></li>')
-				.addClass('next');
+		(function() {
+			if (data.total > 1) {
+				var item = $('<li></li>')
+					.addClass('next');
 
-			var elm;
+				var link;
 
-			if (data.pages != data.start) {
+				if (data.pages != data.start) {
 
-				// bind mouse event
-				elm = $('<a></a>')
-					.on('click', (data.start + 1), onClickEvent);
+					// bind mouse event
+					link = $('<a></a>')
+						.on('click', (data.start + 1), onClickEvent);
+				}
+				else {
+
+					// disable button
+					link = $('<span></span>');
+				}
+
+				link.append('Next Page');
+
+				item.append(link);
+				list.append(item);
 			}
-			else {
-
-				// disable button
-				elm = $('<span></span>');
-			}
-
-			elm.append('Next Page');
-
-			item.append(elm);
-			list.append(item);
-		}
+		})();
 
 		return list;
 	}
