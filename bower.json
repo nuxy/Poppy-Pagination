@@ -1,6 +1,6 @@
 {
   "name": "poppy-pagination",
-  "version": "1.5.2",
+  "version": "1.6.0",
   "homepage": "https://github.com/nuxy/Poppy-Pagination",
   "description": "Generate page options/results using pre-existing content",
   "main": "poppy-pagination.js",
