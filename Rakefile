@@ -1,5 +1,5 @@
 task :jshint do
-  test_file = File.expand_path('jquery.poppy.pagination.js')
+  test_file = File.expand_path('poppy-pagination.js')
   system("jshint file://#{test_file}")
 end
 
