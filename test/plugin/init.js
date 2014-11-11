@@ -10,7 +10,10 @@ module('Poppy-Pagination', {
 					.PoppyPagination({
 						totalResults: 20,
 						perPage:      5,
-						startPage:    obj.start
+						startPage:    obj.start,
+						uiText: {
+							RESULTS: '<strong>%s</strong> - <strong>%s</strong> of <strong>%s</strong> results'
+						}
 					}, getResults);
 
 				// hide test elements
