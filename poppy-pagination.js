@@ -15,6 +15,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 }
 
 (function($) {
+	var lang = {};
+
 	var methods = {
 		"init": function(config, callback) {
 			var $this = $(this);
@@ -23,8 +25,16 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			config = $.extend({
 				totalResults: 0,
 				perPage:      10,
-				startPage:    1
+				startPage:    1,
+				uiText: {
+					LAST_PAGE: 'Last Page',
+					NEXT_PAGE: 'Next Page',
+					RESULTS:   '%s - %s of %s results',
+					VIEWING:   'Viewing'
+				}
 			}, config);
+
+			lang = config.uiText;
 
 			// if results are available, create page elements
 			var res = calcPageResults(config);
@@ -80,20 +90,16 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 	 */
 	function createResultElm(data, callback) {
 
-		// create result detail elements
-		var strong1 = $('<strong>' + data.first + '</strong>'),
-			strong2 = $('<strong>' + data.last  + '</strong>'),
-			strong3 = $('<strong>' + data.total + '</strong>');
-
+		// create result total elements
 		var span = $('<span></span>')
-			.append(strong1, ' - ', strong2, ' of ', strong3, ' found');
+			.append(printf(lang.RESULTS, data.first, data.last, data.total));
 
 		var form = $('<form></form>');
 
 		if (data.total > 10 && data.limit > 1) {
 
 			// .. select menu
-			var label = $('<label></label>').append('Viewing');
+			var label = $('<label></label>').append(lang.VIEWING);
 			form.append(label);
 
 			var option = $('<option>-</option>'),
@@ -207,8 +213,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 					link = $('<span></span>');
 				}
 
-				link.append('Last Page');
-
+				link.append(lang.LAST_PAGE);
 				item.append(link);
 				list.append(item);
 			}
@@ -229,7 +234,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				var item = $('<li></li>')
 					.addClass('next');
 
-				var link;
+				var link = null;
 
 				if (data.pages != data.start) {
 
@@ -243,8 +248,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 					link = $('<span></span>');
 				}
 
-				link.append('Next Page');
-
+				link.append(lang.NEXT_PAGE);
 				item.append(link);
 				list.append(item);
 			}
@@ -281,5 +285,21 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			count++;
 		}
 		return count;
+	}
+
+
+	/**
+	 * Output a formatted string
+	 * @param {String} str
+	 * @returns {String}
+	 */
+	function printf() {
+		var args = arguments,
+			str  = args[0];
+
+		for (var i = 1; i < args.length; i++) {
+			str = str.replace(/\%s/i, args[i]);
+		}
+		return str;
 	}
 })(jQuery);
