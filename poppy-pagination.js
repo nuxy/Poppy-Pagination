@@ -124,7 +124,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			});
 
 			// attach menu options events
-			if (callback) {
+			if ( $.isFunction(callback) ) {
 				select.on('change', function() {
 					data.limit = parseInt(this.value);
 					callback(data);
@@ -159,7 +159,10 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		function onClickEvent(event) {
 			event.preventDefault();
 			data.start = event.data;
-			callback(data);
+
+			if ( $.isFunction(callback) ) {
+				callback(data);
+			}
 		}
 
 		// always show 10 results, if available
