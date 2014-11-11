@@ -16,13 +16,13 @@
 				// use in conjuction with Tidy-Table results
 				$('#container')
 					.TidyTable({
-						columnTitles : ['ID','Rank','Programming Language','Ratings Jan 2012','Delta Jan 2012','Status'],
-						columnValues : data
+						columnTitles: ['ID', 'Rank', 'Programming Language', 'Ratings Jan 2012', 'Delta Jan 2012', 'Status'],
+						columnValues: data
 					})
 					.PoppyPagination({
-						totalResults : 20,
-						perPage      : 5,
-						startPage    : obj.start
+						totalResults: 20,
+						perPage:      5,
+						startPage:    obj.start
 					}, getResults);
 			});
 		})({});

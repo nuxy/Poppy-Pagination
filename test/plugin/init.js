@@ -1,5 +1,5 @@
 module('Poppy-Pagination', {
-	setup : function() {
+	setup: function() {
 		if (setup) return;   // skip process
 
 		(function getResults(obj) {
@@ -8,9 +8,9 @@ module('Poppy-Pagination', {
 			$.getJSON('demo/' + (obj.start || 1) + '.json', function(data) {
 				$('#qunit-custom')
 					.PoppyPagination({
-						totalResults : 20,
-						perPage      : 5,
-						startPage    : obj.start
+						totalResults: 20,
+						perPage:      5,
+						startPage:    obj.start
 					}, getResults);
 
 				// hide test elements

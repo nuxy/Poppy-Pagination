@@ -16,19 +16,19 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 (function($) {
 	var methods = {
-		"init" : function(config, callback) {
+		"init": function(config, callback) {
 
 			// config defaults
 			config = $.extend({
-				totalResults : 0,
-				perPage      : 10,
-				startPage    : 1
+				totalResults: 0,
+				perPage:      10,
+				startPage:    1
 			}, config);
 
 			genResults($(this), config, callback);
 		},
 
-		"destroy" : function() {
+		"destroy": function() {
 			$(this).removeData();
 		}
 	};
@@ -223,7 +223,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			list.append(tmp);
 
 			if (data.pages == 1) {
-				tmp.css('visibility','hidden');
+				tmp.css('visibility', 'hidden');
 			}
 		}
 
