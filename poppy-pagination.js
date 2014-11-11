@@ -17,6 +17,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 (function($) {
 	var methods = {
 		"init": function(config, callback) {
+			var $this = $(this);
 
 			// config defaults
 			config = $.extend({
@@ -25,7 +26,32 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				startPage:    1
 			}, config);
 
-			genResults($(this), config, callback);
+			// if results are available, create page elements
+			var res = calcPageResults(config);
+			if (res.total > 0) {
+				var node = $this.find('div.poppy_pagination');
+
+				// remove existing
+				if (node[0]) {
+					node.remove();
+				}
+
+				// .. header
+				var header = $('<div></div>')
+					.addClass('poppy_pagination');
+
+				var block1 = createResultElm(res, callback),
+					block2 = createPagerElm (res, callback);
+				header.append(block2, block1);
+
+				$this.prepend(header);
+
+				// .. footer
+				var footer = header.clone(true);
+				footer.append(footer.children().get().reverse());
+
+				$this.append(footer);
+			}
 		},
 
 		"destroy": function() {
@@ -47,45 +73,12 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 	};
 
 	/**
-	 * Generate last/next result pages
-	 * @param {Object} $this
-	 * @param {Object} data
-	 * @param {Function} callback
-	 */
-	function genResults($this, data, callback) {
-		var res = calcPageResults(data);
-
-		// if results are available, create page elements
-		if (res.total > 0) {
-			var node  = $this.find('.poppy_pagination');
-
-			if (node[0]) node.remove();
-
-			// .. header
-			var block1 = $('<div></div>')
-				.addClass('poppy_pagination');
-
-			var div1 = createResultBarElm(res, callback),
-				div2 = createPaginateElm( res, callback);
-			block1.append(div2, div1);
-
-			$this.prepend(block1);
-
-			// .. footer
-			var block2 = block1.clone(true);
-			block2.append(block2.children().get().reverse());
-
-			$this.append(block2);
-		}
-	}
-
-	/**
-	 * Create page results bar elements
+	 * Create page result elements
 	 * @param {Object} data
 	 * @param {Function} callback
 	 * @returns {Object}
 	 */
-	function createResultBarElm(data, callback) {
+	function createResultElm(data, callback) {
 
 		// create result detail elements
 		var strong1 = $('<strong>' + data.first + '</strong>'),
@@ -146,7 +139,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 	 * @param {Function} callback
 	 * @returns {Object}
 	 */
-	function createPaginateElm(data, callback) {
+	function createPagerElm(data, callback) {
 
 		// create node elements
 		var list = $('<ul></ul>')
