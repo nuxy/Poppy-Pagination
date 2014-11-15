@@ -22,7 +22,7 @@
 	<li>Easy to set-up and customize.</li>
 	<li>Can be used to wrap any pre-existing set of results.</li>
 	<li>Customizable callback function for post-processing link events.</li>
-	<li>Fast and lightweight (jQuery plug-in *only 4.6 kB)</li>
+	<li>Fast and lightweight (jQuery plug-in *only 4.8 kB)</li>
 </ul>
 
 <p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
@@ -30,6 +30,12 @@
 <a name="install"></a>
 
 <h2>Installation</h2>
+
+<p>This package can be easily installed using <a href="http://bower.io">Bower</a>.</p>
+
+<pre>$ bower install poppy-pagination</pre>
+
+<p>Manual install:</p>
 
 <ol>
 	<li>Download the latest <a href="https://github.com/nuxy/Poppy-Pagination/tags">sources</a> to your computer using a web browser.</li>
@@ -73,9 +79,9 @@
 $(document).ready(function() {
 	$('#container')
 		.PoppyPagination({
-			totalResults : 20,
-			perPage      : 5,
-			startPage    : 1
+			totalResults: 20,
+			perPage:      5,
+			startPage:    1
 		}, doSomething);
 	}
 });
@@ -97,20 +103,26 @@ $(document).ready(function() {
 $(document).ready(function() {
 	(function getResults(obj) {
 		$.getJSON({
-			url     : '/path/to/script',
-			data    : $.param(obj),
-			success : function(data) {
+			url:     '/path/to/script',
+			data:    $.param(obj),
+			success: function(data) {
 
 				// use in conjuction with Tidy-Table results
 				$('#container')
 					.TidyTable({
-						columnTitles : data.columns,
-						columnValues : data.values
+						columnTitles: data.columns,
+						columnValues: data.values
 					})
 					.PoppyPagination({
-						totalResults : 20,
-						perPage      : 5,
-						startPage    : (obj.start || 1)
+						totalResults: 20,
+						perPage:      5,
+						startPage:    (obj.start || 1),
+						uiText: {
+							LAST_PAGE: 'Back',
+							NEXT_PAGE: 'Next',
+							RESULTS:   '<strong>%s</strong> through <strong>%s</strong> of <strong>%s</strong> total results',
+							VIEWING:   'Show'
+						}
 					}, getResults);
 			});
 		});
@@ -151,9 +163,43 @@ $(document).ready(function() {
 		<td>page number of first viewable result</td>
 		<td>1</td>
 	</tr>
+	<tr>
+		<td>uiText</td>
+		<td>customize user interface text elements (optional)</td>
+		<td><a href="#language">UI language</a></td>
+	</tr>
 </table>
 
 <p>The <code>perPage</code> value is optional and is to be used in cases where you are processing a full data-set vs requesting as parts.  When this option is not provided a select menu will be created to allows the user to define the per-page result.</p>
+
+<a name="language"></a>
+
+<h2>Override UI language</h2>
+
+<p>You can update the predefined language by defining <code>uiText</code> with the following values:</p>
+
+<table border="1">
+	<tr>
+		<th>Key</th>
+		<th>Default Value</th>
+	</tr>
+	<tr>
+		<td>LAST_PAGE</td>
+		<td>Last Page</td>
+	</tr>
+	<tr>
+		<td>NEXT_PAGE</td>
+		<td>Next Page</td>
+	</tr>
+	<tr>
+		<td>RESULTS</td>
+		<td><strong>%s</strong> - <strong>%s</strong> of <strong>%s</strong> results</td>
+	</tr>
+	<tr>
+		<td>VIEWING</td>
+		<td>Viewing</td>
+	</tr>
+</table>
 
 <a name="callback"></a>
 
@@ -220,7 +266,7 @@ $(document).ready(function() {
 
 <h2>Releases</h2>
 
-<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3 kB) and developers version (unpacked 6.1 kB)</p>
+<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.1 kB) and developers version (unpacked 6.3 kB)</p>
 
 <p>You can always find the latest updates within this projects repository.</p>
 
