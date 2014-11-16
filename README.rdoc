@@ -18,8 +18,8 @@ A simple way to generate next and last page buttons, breadcrumb links, and per-p
 
 This package can be easily installed using {Bower}[http://bower.io].
 
-    $ bower install poppy-pagination#~1.5.3 (legacy)
-    $ bower install poppy-pagination#~1.6.0 (latest)
+    $ bower install poppy-pagination#~1.5 (legacy)
+    $ bower install poppy-pagination#~1.6 (latest)
 
 Please refer to the {README}[https://labs.mbrooks.info/demos/Poppy-Pagination/README.html] for more information about this package.
 
