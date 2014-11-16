@@ -12,7 +12,7 @@ module('Poppy-Pagination', {
 						perPage:      5,
 						startPage:    obj.start,
 						uiText: {
-							RESULTS: '<strong>%s</strong> - <strong>%s</strong> of <strong>%s</strong> results'
+							RESULTS: '<strong>%first</strong> - <strong>%last</strong> of <strong>%total</strong> results'
 						}
 					}, getResults);
 
