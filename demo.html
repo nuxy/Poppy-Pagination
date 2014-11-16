@@ -22,7 +22,10 @@
 					.PoppyPagination({
 						totalResults: 20,
 						perPage:      5,
-						startPage:    obj.start
+						startPage:    obj.start,
+						uiText: {
+							RESULTS: '<strong>%first</strong> - <strong>%last</strong> of <strong>%total</strong> results'
+						}
 					}, getResults);
 			});
 		})({});

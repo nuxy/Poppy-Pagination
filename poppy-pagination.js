@@ -22,14 +22,14 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			var $this = $(this);
 
 			// config defaults
-			config = $.extend({
+			config = $.extend(true, {
 				totalResults: 0,
 				perPage:      10,
 				startPage:    1,
 				uiText: {
 					LAST_PAGE: 'Last Page',
 					NEXT_PAGE: 'Next Page',
-					RESULTS:   '%s - %s of %s results',
+					RESULTS:   '%first - %last of %total results',
 					VIEWING:   'Viewing'
 				}
 			}, config);
@@ -92,14 +92,14 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 		// create result total elements
 		var span = $('<span></span>')
-			.append(printf(lang.RESULTS, data.first, data.last, data.total));
+			.append(replaceTokens(lang.RESULTS, data));
 
 		var form = $('<form></form>');
 
 		if (data.total > 10 && data.limit > 1) {
 
 			// .. select menu
-			var label = $('<label></label>').append(lang.VIEWING);
+			var label = $('<label></label>').append(replaceTokens(lang.VIEWING, data));
 			form.append(label);
 
 			var option = $('<option>-</option>'),
@@ -213,7 +213,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 					link = $('<span></span>');
 				}
 
-				link.append(lang.LAST_PAGE);
+				link.append(replaceTokens(lang.LAST_PAGE, data));
 				item.append(link);
 				list.append(item);
 			}
@@ -248,7 +248,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 					link = $('<span></span>');
 				}
 
-				link.append(lang.NEXT_PAGE);
+				link.append(replaceTokens(lang.NEXT_PAGE, data));
 				item.append(link);
 				list.append(item);
 			}
@@ -289,17 +289,20 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 
 	/**
-	 * Output a formatted string
-	 * @param {String} str
+	 * Replace string tokens with result object value
+	 * @param {String} text
+	 * @param {Object} vals
 	 * @returns {String}
 	 */
-	function printf() {
-		var args = arguments,
-			str  = args[0];
+	function replaceTokens(text, vals) {
+		for (var key in vals) {
+			if (vals[key]) {
+				var token = key,
+					regex = new RegExp('%' + token, 'i');
 
-		for (var i = 1; i < args.length; i++) {
-			str = str.replace(/\%s/i, args[i]);
+				text = text.replace(regex, vals[key]);
+			}
 		}
-		return str;
+		return text;
 	}
 })(jQuery);

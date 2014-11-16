@@ -22,7 +22,7 @@
 	<li>Easy to set-up and customize.</li>
 	<li>Can be used to wrap any pre-existing set of results.</li>
 	<li>Customizable callback function for post-processing link events.</li>
-	<li>Fast and lightweight (jQuery plug-in *only 4.8 kB)</li>
+	<li>Fast and lightweight (jQuery plug-in *only 4.9 kB)</li>
 </ul>
 
 <p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
@@ -117,10 +117,12 @@ $(document).ready(function() {
 						totalResults: 20,
 						perPage:      5,
 						startPage:    (obj.start || 1),
+
+						// override UI language
 						uiText: {
 							LAST_PAGE: 'Back',
 							NEXT_PAGE: 'Next',
-							RESULTS:   '<strong>%s</strong> through <strong>%s</strong> of <strong>%s</strong> total results',
+							RESULTS:   '%first through %last of %total results',
 							VIEWING:   'Show'
 						}
 					}, getResults);
@@ -180,7 +182,7 @@ $(document).ready(function() {
 
 <table border="1">
 	<tr>
-		<th>Key</th>
+		<th>Name</th>
 		<th>Default Value</th>
 	</tr>
 	<tr>
@@ -193,7 +195,7 @@ $(document).ready(function() {
 	</tr>
 	<tr>
 		<td>RESULTS</td>
-		<td><strong>%s</strong> - <strong>%s</strong> of <strong>%s</strong> results</td>
+		<td><a href="#tokens">%first</a> - <a href="#tokens">%last</a> of <a href="#tokens">%total</a> results</td>
 	</tr>
 	<tr>
 		<td>VIEWING</td>
@@ -223,7 +225,9 @@ $(document).ready(function() {
 	}
 }</pre>
 
-<p>The following values are available in the response object:</p>
+<a name="tokens"></a>
+
+<p>Object values can be accessed as a token using the <em>%name</em> format when overriding UI language text.</p>
 
 <table border="1">
 	<tr>
@@ -266,7 +270,7 @@ $(document).ready(function() {
 
 <h2>Releases</h2>
 
-<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.1 kB) and developers version (unpacked 6.3 kB)</p>
+<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.1 kB) and developers version (unpacked 6.4 kB)</p>
 
 <p>You can always find the latest updates within this projects repository.</p>
 
