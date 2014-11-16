@@ -2,7 +2,7 @@
 
 A simple way to generate next and last page buttons, breadcrumb links, and per-page result totals, as HTML.
 
-{<img src="https://github.com/nuxy/Poppy-Pagination/raw/master/preview.jpg" alt="Poppy-Pagination" />}[https://labs.mbrooks.info/demos/Poppy-Pagination]
+{<img src="https://github.com/nuxy/Poppy-Pagination/raw/master/preview.gif" alt="Poppy-Pagination" />}[https://labs.mbrooks.info/demos/Poppy-Pagination]
 
 == Features
 
