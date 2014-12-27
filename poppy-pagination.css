@@ -59,6 +59,10 @@ div.poppy_pagination ul.pages {
 	width: 100%;
 }
 
+div.poppy_pagination ul.pages.disabled div.crumbs {
+	visibility: hidden;
+}
+
 div.poppy_pagination ul.pages li {
 	float: left;
 	padding: 4px 0px 4px 0px;

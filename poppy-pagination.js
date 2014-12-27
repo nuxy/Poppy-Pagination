@@ -224,6 +224,8 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 			list.append(tmp);
 
 			if (data.pages == 1) {
+
+				// TODO: to be removed - use CSS instead
 				tmp.css('visibility', 'hidden');
 			}
 		}
@@ -253,6 +255,10 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				list.append(item);
 			}
 		})();
+
+		if (data.pages == 1) {
+			list.addClass('disabled');
+		}
 
 		return list;
 	}
