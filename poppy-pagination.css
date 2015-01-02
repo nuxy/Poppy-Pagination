@@ -2,7 +2,7 @@
  *  Poppy Pagination
  *  Generate page options/results using pre-existing content
  *
- *  Copyright 2012-2014, Marc S. Brooks (http://mbrooks.info)
+ *  Copyright 2012-2015, Marc S. Brooks (http://mbrooks.info)
  *  Licensed under the MIT license:
  *  http://www.opensource.org/licenses/mit-license.php
  *
