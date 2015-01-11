@@ -30,8 +30,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		 * @returns {Object} jQuery object
 		 */
 		"init": function(config, callback) {
-			var $this = $(this),
-				data  = $this.data();
+			var $this = $(this);
 
 			// config defaults
 			config = $.extend(true, {
