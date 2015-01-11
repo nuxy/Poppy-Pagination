@@ -46,11 +46,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				}
 			}, config);
 
-			if ( $.isEmptyObject(data) ) {
-				$this.data({
-					config: config
-				});
-			}
+			$this.data('config', config);
 
 			return $this.PoppyPagination('_createPageResults', callback);
 		},
@@ -73,13 +69,12 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 		 * @private
 		 */
 		"_createPageResults": function(callback) {
-			var $this = $(this),
-				block = $this.parent();
+			var $this = $(this);
 
 			// if results are available, create page elements
 			var results = $this.PoppyPagination('_calcPageResults');
 			if (results.total > 0) {
-				var pager = block.find('div.poppy_pagination');
+				var pager = $this.find('div.poppy_pagination');
 
 				// remove existing
 				if (pager[0]) {
@@ -93,15 +88,15 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 				var elm1 = $this.PoppyPagination('_createResultElm', results, callback),
 					elm2 = $this.PoppyPagination('_createPagerElm',  results, callback);
 				header.append(elm2, elm1);
-				block.prepend(header);
+				$this.prepend(header);
 
 				// .. footer
 				var footer = header.clone(true);
 				footer.append(footer.children().get().reverse());
-				block.append(footer);
+				$this.append(footer);
 			}
 
-			return block;
+			return $this;
 		},
 
 		/**

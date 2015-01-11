@@ -111,11 +111,11 @@ $(document).ready(function() {
 			count: config.perPage || 20
 		};
 	
-        if (config) {
+		if (config) {
 
 			// calculate SQL OFFSET
-            params.offest = config.start * config.limit - config.limit;
-        }
+			params.offest = config.start * config.limit - config.limit;
+		}
 
 		$.getJSON({
 			url:  '/path/to/script',
@@ -130,8 +130,10 @@ $(document).ready(function() {
 				block.TidyTable({
 					columnTitles: data.columns,
 					columnValues: data.values
-				})
-				.PoppyPagination({
+				});
+
+				// create pager elements
+				block.PoppyPagination({
 					totalResults: 20,
 					perPage:      5,
 					startPage:    (config.start || 1),
