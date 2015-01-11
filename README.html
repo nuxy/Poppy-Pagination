@@ -22,7 +22,7 @@
 	<li>Easy to set-up and customize.</li>
 	<li>Can be used to wrap any pre-existing set of results.</li>
 	<li>Customizable callback function for post-processing link events.</li>
-	<li>Fast and lightweight (jQuery plug-in *only 4.9 kB)</li>
+	<li>Fast and lightweight (jQuery plug-in *only 5.1 kB)</li>
 </ul>
 
 <p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
@@ -33,8 +33,7 @@
 
 <p>This package can be easily installed using <a href="http://bower.io">Bower</a>.</p>
 
-<pre>$ bower install poppy-pagination#~1.5 (legacy)
-$ bower install poppy-pagination#~1.6 (latest)</pre>
+<pre>$ bower install poppy-pagination</pre>
 
 <p>Manual install:</p>
 
@@ -102,31 +101,49 @@ $(document).ready(function() {
 &lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	(function getResults(obj) {
+	(function getResults(config) {
+
+		/**
+		 * Get current page results from flatfile, or
+		 * API service (using SQL LIMIT/OFFSET & FOUND_ROWS)
+		 */
+		var params = {
+			count: config.perPage || 20
+		};
+	
+        if (config) {
+
+			// calculate SQL OFFSET
+            params.offest = config.start * config.limit - config.limit;
+        }
+
 		$.getJSON({
-			url:     '/path/to/script',
-			data:    $.param(obj),
+			url:  '/path/to/script',
+			data: params,
 			success: function(data) {
+				var block = $('#container');
 
-				// use in conjuction with Tidy-Table results
-				$('#container')
-					.TidyTable({
-						columnTitles: data.columns,
-						columnValues: data.values
-					})
-					.PoppyPagination({
-						totalResults: 20,
-						perPage:      5,
-						startPage:    (obj.start || 1),
+				// remove existing data
+				block.TidyTable('destroy');
 
-						// override UI language
-						uiText: {
-							LAST_PAGE: 'Back',
-							NEXT_PAGE: 'Next',
-							RESULTS:   '%first through %last of %total results',
-							VIEWING:   'Show'
-						}
-					}, getResults);
+				// create table elements
+				block.TidyTable({
+					columnTitles: data.columns,
+					columnValues: data.values
+				})
+				.PoppyPagination({
+					totalResults: 20,
+					perPage:      5,
+					startPage:    (config.start || 1),
+
+					// override UI language
+					uiText: {
+						LAST_PAGE: 'Back',
+						NEXT_PAGE: 'Next',
+						RESULTS:   '%first through %last of %total results',
+						VIEWING:   'Show'
+					}
+				}, getResults);
 			});
 		});
 	})({});
@@ -271,7 +288,7 @@ $(document).ready(function() {
 
 <h2>Releases</h2>
 
-<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.1 kB) and developers version (unpacked 6.4 kB)</p>
+<p>I have included with this package a <a href="http://dean.edwards.name/packer">packed</a> version (3.3 kB) and developers version (unpacked 7.8 kB)</p>
 
 <p>You can always find the latest updates within this projects repository.</p>
 

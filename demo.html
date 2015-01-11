@@ -12,21 +12,21 @@
 	$(document).ready(function() {
 		(function getResults(obj) {
 			$.getJSON('demo/' + (obj.start || 1) + '.json', function(data) {
+				var block = $('#container');
 
-				// use in conjuction with Tidy-Table results
-				$('#container')
-					.TidyTable({
-						columnTitles: ['ID', 'Rank', 'Programming Language', 'Ratings Jan 2012', 'Delta Jan 2012', 'Status'],
-						columnValues: data
-					})
-					.PoppyPagination({
-						totalResults: 20,
-						perPage:      5,
-						startPage:    obj.start,
-						uiText: {
-							RESULTS: '<strong>%first</strong> - <strong>%last</strong> of <strong>%total</strong> results'
-						}
-					}, getResults);
+				block.TidyTable('destroy');
+				block.TidyTable({
+					columnTitles: ['ID', 'Rank', 'Programming Language', 'Ratings Jan 2012', 'Delta Jan 2012', 'Status'],
+					columnValues: data
+				})
+				.PoppyPagination({
+					totalResults: 20,
+					perPage:      5,
+					startPage:    obj.start,
+					uiText: {
+						RESULTS: '<strong>%first</strong> - <strong>%last</strong> of <strong>%total</strong> results'
+					}
+				}, getResults);
 			});
 		})({});
 	});
@@ -56,7 +56,7 @@
 <body>
 
 <p id="about">
-	This <strong>jQuery</strong> plugin is <a href="poppy-pagination.min.js" title="Only 3.1 kB">lightweight</a>, easy to <a href="README.html#install" title="Installation">install</a> / <a href="demo.css" title="Stylesheet">customize</a>, and works on all modern web browsers.
+	This <strong>jQuery</strong> plugin is <a href="poppy-pagination.min.js" title="Only 3.3 kB">lightweight</a>, easy to <a href="README.html#install" title="Installation">install</a> / <a href="demo.css" title="Stylesheet">customize</a>, and works on all modern web browsers.
 </p>
 
 
