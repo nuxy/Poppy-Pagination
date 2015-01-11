@@ -1,8 +1,8 @@
 test('Load State', function() {
-	ok($(page).find('li.last span').length, "Result link 'Last Page' is disabled");
-	ok($(page).find('li.next a').length,    "Result link 'Next Page' is enabled");
+	ok($(pager).find('li.last span').length, "Result link 'Last Page' is disabled");
+	ok($(pager).find('li.next a').length,    "Result link 'Next Page' is enabled");
 
-	var crumbs = $(page).find('li.crumbs').first();
+	var crumbs = $(pager).find('li.crumbs').first();
 
 	equal(crumbs.children().size(), 4, 'Total of 4 pages available');
 
@@ -11,7 +11,7 @@ test('Load State', function() {
 	ok(crumbs.find('a:nth-child(2)'),    "3rd result '3' is enabled");
 	ok(crumbs.find('a:nth-child(3)'),    "4th result '4' is enabled");
 
-	var options = $(page).find('div.options').first();
+	var options = $(pager).find('div.options').first();
 
 	equal(options.find('form').is(':visible'), 0, 'Select menu options are not available');
 
