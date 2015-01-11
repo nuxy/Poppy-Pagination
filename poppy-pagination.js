@@ -257,12 +257,6 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
 			// .. page crumbs (links)
 			if (crumbs.children()) {
-				if (results.pages == 1) {
-
-					// TODO: to be removed - use CSS instead
-					crumbs.css('visibility', 'hidden');
-				}
-
 				list.append(crumbs);
 			}
 
