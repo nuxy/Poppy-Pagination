@@ -1,0 +1,68 @@
+/**
+ * Demo example
+ */
+#container {
+  margin: 10% auto 0px auto;
+  width: 800px;
+}
+
+/**
+ * Customize
+ */
+.poppy_pagination .options {
+  border-bottom: 1px solid #DDDDDD;
+  border-top: 1px solid #DDDDDD;
+  color: #999999;
+  height: 19px;
+  padding: 5px 0px 5px 0px;
+  width: 100%;
+}
+
+.poppy_pagination .options span {
+  margin-left: 10px;
+}
+
+.poppy_pagination .options {
+  width: 100%;
+}
+
+.poppy_pagination .options span strong {
+  color: #787878;
+}
+
+.poppy_pagination .pages li a {
+  text-decoration: none;
+}
+
+.poppy_pagination .pages .crumbs a,
+.poppy_pagination .pages .crumbs span {
+  border: 1px solid #CCCCCC;
+}
+
+.poppy_pagination .pages .crumbs span {
+  background-color: #EEEEEE;
+  color: #787878;
+  font-weight: bold;
+}
+
+.poppy_pagination .pages .last,
+.poppy_pagination .pages .next {
+  width: 100px;
+}
+
+.poppy_pagination .pages .last span,
+.poppy_pagination .pages .next span {
+  color: #DDDDDD;
+}
+
+/**
+ * Tidy-Table overrides
+ */
+table.tidy_table {
+  clear: both;
+  width: 100%;
+}
+
+table.tidy_table tbody {
+  cursor: auto;
+}
