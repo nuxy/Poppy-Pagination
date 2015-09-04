@@ -1,11 +1,11 @@
 module('Poppy-Pagination', {
   setup: function() {
-    if (setup) return;   // skip process
+    if (setup) return;   // Skip process
 
     (function getResults(config) {
       stop();
 
-      $.getJSON('demo/' + (config.start || 1) + '.json', function(data) {
+      $.getJSON('http://nuxy.github.io/Poppy-Pagination/demo/' + (config.start || 1) + '.json', function(data) {
         $('#qunit-custom')
           .PoppyPagination({
             totalResults: 20,
@@ -16,7 +16,7 @@ module('Poppy-Pagination', {
             }
           }, getResults);
 
-        // hide test elements
+        // Hide test elements.
         $('#qunit-custom').hide(0);
 
         start();
