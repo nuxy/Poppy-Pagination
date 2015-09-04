@@ -10,11 +10,11 @@
  *    jquery.js
  */
 
-div.poppy_pagination a {
+.poppy_pagination a {
   cursor: pointer;
 }
 
-div.poppy_pagination div.options {
+.poppy_pagination .options {
   border-bottom: 1px solid #DDDDDD;
   border-top: 1px solid #DDDDDD;
   clear: both;
@@ -25,31 +25,31 @@ div.poppy_pagination div.options {
   width: 100%;
 }
 
-div.poppy_pagination div.options span {
+.poppy_pagination .options span {
   float: left;
   position: relative;
   top: 2px;
 }
 
-div.poppy_pagination div.options span strong {
+.poppy_pagination .options span strong {
   color: #787878;
 }
 
-div.poppy_pagination div.options form {
+.poppy_pagination .options form {
   float: right;
 }
 
-div.poppy_pagination div.options form label {
+.poppy_pagination .options form label {
   float: left;
   position: relative;
   top: 2px;
 }
 
-div.poppy_pagination div.options form select {
+.poppy_pagination .options form select {
   margin-left: 8px;
 }
 
-div.poppy_pagination ul.pages {
+.poppy_pagination .pages {
   clear: both;
   float: left;
   height: 20px;
@@ -59,20 +59,20 @@ div.poppy_pagination ul.pages {
   width: 100%;
 }
 
-div.poppy_pagination ul.pages.disabled div.crumbs {
+.poppy_pagination .pages.disabled .crumbs {
   visibility: hidden;
 }
 
-div.poppy_pagination ul.pages li {
+.poppy_pagination .pages li {
   float: left;
   padding: 4px 0px 4px 0px;
 }
 
-div.poppy_pagination ul.pages li a {
+.poppy_pagination .pages li a {
   text-decoration: none;
 }
 
-div.poppy_pagination ul.pages li.crumbs {
+.poppy_pagination .pages .crumbs {
   left: 0px;
   position: absolute;
   text-align: center;
@@ -80,37 +80,37 @@ div.poppy_pagination ul.pages li.crumbs {
   z-index: 1;
 }
 
-div.poppy_pagination ul.pages li.crumbs a,
-div.poppy_pagination ul.pages li.crumbs span {
+.poppy_pagination .pages .crumbs a,
+.poppy_pagination .pages .crumbs span {
   border: 1px solid #CCCCCC;
   margin: 0px 6px 0px 6px;
   padding: 3px 6px 3px 6px;
 }
 
-div.poppy_pagination ul.pages li.crumbs span {
+.poppy_pagination .pages .crumbs span {
   background-color: #EEEEEE;
   color: #787878;
   font-weight: bold;
 }
 
-div.poppy_pagination ul.pages li.last,
-div.poppy_pagination ul.pages li.next {
+.poppy_pagination .pages .last,
+.poppy_pagination .pages .next {
   position: relative;
   width: 100px;
   z-index: 2;
 }
 
-div.poppy_pagination ul.pages li.last {
+.poppy_pagination .pages .last {
   float: left;
   text-align: left;
 }
 
-div.poppy_pagination ul.pages li.next {
+.poppy_pagination .pages .next {
   float: right;
   text-align: right;
 }
 
-div.poppy_pagination ul.pages li.last span,
-div.poppy_pagination ul.pages li.next span {
+.poppy_pagination .pages .last span,
+.poppy_pagination .pages .next span {
   color: #DDDDDD;
 }
