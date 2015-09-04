@@ -21,7 +21,7 @@
   color: #999999;
   float: left;
   height: 19px;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0px;
   width: 100%;
 }
 
@@ -65,7 +65,7 @@
 
 .poppy_pagination .pages li {
   float: left;
-  padding: 4px 0px 4px 0px;
+  padding: 4px 0px;
 }
 
 .poppy_pagination .pages li a {
@@ -83,8 +83,8 @@
 .poppy_pagination .pages .crumbs a,
 .poppy_pagination .pages .crumbs span {
   border: 1px solid #CCCCCC;
-  margin: 0px 6px 0px 6px;
-  padding: 3px 6px 3px 6px;
+  margin: 0px 6px;
+  padding: 3px 6px;
 }
 
 .poppy_pagination .pages .crumbs span {
