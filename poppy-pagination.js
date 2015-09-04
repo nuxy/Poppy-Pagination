@@ -1,6 +1,6 @@
 /**
  *  Poppy Pagination
- *  Generate page options/results using pre-existing content
+ *  Generate page options/results using pre-existing content.
  *
  *  Copyright 2012-2015, Marc S. Brooks (http://mbrooks.info)
  *  Licensed under the MIT license:
@@ -10,7 +10,7 @@
  *    jquery.js
  */
 
-if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
+if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace('.', '')) < parseInt('1.8.3'.replace('.', '')))) {
   throw new Error('Poppy-Pagination requires jQuery 1.8.3 or greater.');
 }
 
@@ -27,6 +27,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
      * @memberof PoppyPagination
      * @method init
      *
+     * @example
+     * $('#container').PoppyPagination(config, callback);
+     *
      * @param {Object} config
      * @param {Function} callback
      *
@@ -35,7 +38,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
     "init": function(config, callback) {
       var $this = $(this);
 
-      // config defaults
+      // Config defaults
       config = $.extend(true, {
         totalResults: 0,
         perPage:      10,
@@ -58,6 +61,9 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
      *
      * @memberof PoppyPagination
      * @method destroy
+     *
+     * @example
+     * $('#container').PoppyPagination('destroy');
      */
     "destroy": function() {
       $(this).removeData();
@@ -87,7 +93,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
           pager.remove();
         }
 
-        // .. header
+        // .. Header
         var header = $('<div></div>')
           .addClass('poppy_pagination');
 
@@ -96,7 +102,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
         header.append(elm2, elm1);
         $this.prepend(header);
 
-        // .. footer
+        // .. Footer
         var footer = header.clone(true);
         footer.append(footer.children().get().reverse());
         $this.append(footer);
@@ -130,7 +136,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
       if (results.total > 10 && results.limit > 1) {
 
-        // .. select menu
+        // .. Select menu
         var label = $('<label></label>')
           .append(replaceTokens(lang.VIEWING, results));
 
@@ -142,7 +148,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
         var opts = [ 10, 20, 30, 40, 50 ];
 
-        // .. options
+        // .. Options
         $.each(opts, function() {
           if (this <= results.total) {
             option = $('<option>' + this + '</option>')
@@ -219,7 +225,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
           var link = null;
 
-          // .. page links
+          // .. Page links
           if (results.start != i) {
 
             // Bind mouse event
@@ -228,7 +234,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
           }
           else {
 
-            // disable crumb
+            // Disable crumb
             link = $('<span>' + i + '</span>');
           }
 
@@ -236,7 +242,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
         }
       })();
 
-      // .. last page link
+      // .. Last page link
       (function() {
         if (results.total > 0) {
           var item = $('<li></li>')
@@ -262,12 +268,12 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
         }
       })();
 
-      // .. page crumbs (links)
+      // .. Page crumbs (links)
       if (crumbs.children()) {
         list.append(crumbs);
       }
 
-      // .. next page link
+      // .. Next page link
       (function() {
         if (results.total > 1) {
           var item = $('<li></li>')
@@ -338,15 +344,15 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
   };
 
   /**
-  * Return the row tota;.
-  *
-  * @protected
-  *
-  * @param {String} total
-  * @param {Number} limit
-  *
-  * @returns {Number}
-  */
+   * Return the row tota;.
+   *
+   * @protected
+   *
+   * @param {String} total
+   * @param {Number} limit
+   *
+   * @returns {Number}
+   */
   function getTotalRows(total, limit) {
     var count = Math.round(total / limit);
     if ((count * limit) < total) {
@@ -356,15 +362,15 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
   }
 
   /**
-  * Replace language string tokens with its object defined value.
-  *
-  * @protected
-  *
-  * @param {String} text
-  * @param {Object} vals
-  *
-  * @returns {String}
-  */
+   * Replace language string tokens with its object defined value.
+   *
+   * @protected
+   *
+   * @param {String} text
+   * @param {Object} vals
+   *
+   * @returns {String}
+   */
   function replaceTokens(text, vals) {
     for (var key in vals) {
       if (vals[key]) {
