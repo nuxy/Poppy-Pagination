@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="https://mbrooks.info/readme.min.css">
+  <link rel="stylesheet" type="text/css" href="https://mbrooks.info/readme.min.css">
 
-	<title>README</title>
+  <title>README</title>
 </head>
 <body>
 
@@ -16,13 +16,13 @@
 <h2>Features</h2>
 
 <ul>
-	<li>Extensible HTML/CSS interface.</li>
-	<li>Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.</li>
-	<li>Compatible with iOS and Android device web browsers.</li>
-	<li>Easy to set-up and customize.</li>
-	<li>Can be used to wrap any pre-existing set of results.</li>
-	<li>Customizable callback function for post-processing link events.</li>
-	<li>Fast and lightweight (jQuery plug-in *only 5.1 kB)</li>
+  <li>Extensible HTML/CSS interface.</li>
+  <li>Compatible with Firefox 3.6+, Chrome, Safari 5+, Opera, and Internet Explorer 7+ web browsers.</li>
+  <li>Compatible with iOS and Android device web browsers.</li>
+  <li>Easy to set-up and customize.</li>
+  <li>Can be used to wrap any pre-existing set of results.</li>
+  <li>Customizable callback function for post-processing link events.</li>
+  <li>Fast and lightweight (jQuery plug-in *only 5.1 kB)</li>
 </ul>
 
 <p>Check out the <a href="demo.html">demo</a> provided with this package.</p>
@@ -38,24 +38,24 @@
 <p>Manual install:</p>
 
 <ol>
-	<li>Download the latest <a href="https://github.com/nuxy/Poppy-Pagination/tags">sources</a> to your computer using a web browser.</li>
-	<li>Extract the contents of the <em>.zip</em> into a folder on your local computer.</li>
-	<li>Upload the folder with the <strong>following files</strong> to your web site.</li>
+  <li>Download the latest <a href="https://github.com/nuxy/Poppy-Pagination/tags">sources</a> to your computer using a web browser.</li>
+  <li>Extract the contents of the <em>.zip</em> into a folder on your local computer.</li>
+  <li>Upload the folder with the <strong>following files</strong> to your web site.</li>
 </ol>
 
 <table border="1">
-	<tr>
-		<th>Filename</th>
-		<th>Role</th>
-	</tr>
-	<tr>
-		<td>poppy-pagination.min.js</td>
-		<td>The main script to be included from within your HTML document.</td>
-	</tr>
-	<tr>
-		<td>poppy-pagination.min.css</td>
-		<td>This style sheet that defines the "look & feel" of the results.</td>
-	</tr>
+  <tr>
+    <th>Filename</th>
+    <th>Role</th>
+  </tr>
+  <tr>
+    <td>poppy-pagination.min.js</td>
+    <td>The main script to be included from within your HTML document.</td>
+  </tr>
+  <tr>
+    <td>poppy-pagination.min.css</td>
+    <td>This style sheet that defines the "look & feel" of the results.</td>
+  </tr>
 </table>
 
 <h2>Set-up</h2>
@@ -77,13 +77,13 @@
 &lt;script src="/path/to/poppy-pagination.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	$('#container')
-		.PoppyPagination({
-			totalResults: 20,
-			perPage:      5,
-			startPage:    1
-		}, doSomething);
-	}
+  $('#container')
+    .PoppyPagination({
+      totalResults: 20,
+      perPage:      5,
+      startPage:    1
+    }, doSomething);
+  }
 });
 &lt;/script&gt;
 
@@ -101,54 +101,54 @@ $(document).ready(function() {
 &lt;script src="/path/to/tidy-table.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 $(document).ready(function() {
-	(function getResults(config) {
+  (function getResults(config) {
 
-		/**
-		 * Get current page results from flatfile, or
-		 * API service (using SQL LIMIT/OFFSET & FOUND_ROWS)
-		 */
-		var params = {
-			count: config.perPage || 20
-		};
-	
-		if (config) {
+    /**
+     * Get current page results from flatfile, or
+     * API service (using SQL LIMIT/OFFSET & FOUND_ROWS)
+     */
+    var params = {
+      count: config.perPage || 20
+    };
+  
+    if (config) {
 
-			// calculate SQL OFFSET
-			params.offest = config.start * config.limit - config.limit;
-		}
+      // calculate SQL OFFSET
+      params.offest = config.start * config.limit - config.limit;
+    }
 
-		$.getJSON({
-			url:  '/path/to/script',
-			data: params,
-			success: function(data) {
-				var block = $('#container');
+    $.getJSON({
+      url:  '/path/to/script',
+      data: params,
+      success: function(data) {
+        var block = $('#container');
 
-				// remove existing data
-				block.TidyTable('destroy');
+        // remove existing data
+        block.TidyTable('destroy');
 
-				// create table elements
-				block.TidyTable({
-					columnTitles: data.columns,
-					columnValues: data.values
-				});
+        // create table elements
+        block.TidyTable({
+          columnTitles: data.columns,
+          columnValues: data.values
+        });
 
-				// create pager elements
-				block.PoppyPagination({
-					totalResults: 20,
-					perPage:      5,
-					startPage:    (config.start || 1),
+        // create pager elements
+        block.PoppyPagination({
+          totalResults: 20,
+          perPage:      5,
+          startPage:    (config.start || 1),
 
-					// override UI language
-					uiText: {
-						LAST_PAGE: 'Back',
-						NEXT_PAGE: 'Next',
-						RESULTS:   '%first through %last of %total results',
-						VIEWING:   'Show'
-					}
-				}, getResults);
-			});
-		});
-	})({});
+          // override UI language
+          uiText: {
+            LAST_PAGE: 'Back',
+            NEXT_PAGE: 'Next',
+            RESULTS:   '%first through %last of %total results',
+            VIEWING:   'Show'
+          }
+        }, getResults);
+      });
+    });
+  })({});
 &lt;/script&gt;
 
 &lt;link rel="stylesheet" type="text/css" href="/path/to/poppy-pagination.min.css"&gt;
@@ -165,31 +165,31 @@ $(document).ready(function() {
 <p>The following options can be passed to the plug-in main function as JSON</p>
 
 <table border="1">
-	<tr>
-		<th>Option</th>
-		<th>Description</th>
-		<th>Default Value</th>
-	</tr>
-	<tr>
-		<td>totalResults</td>
-		<td>total number of results in data-set</td>
-		<td>none</td>
-	</tr>
-	<tr>
-		<td>perPage</td>
-		<td>total number of results to output per page (optional)</td>
-		<td>none</td>
-	</tr>
-	<tr>
-		<td>startPage</td>
-		<td>page number of first viewable result</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>uiText</td>
-		<td>customize user interface text elements (optional)</td>
-		<td><a href="#language">UI language</a></td>
-	</tr>
+  <tr>
+    <th>Option</th>
+    <th>Description</th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>totalResults</td>
+    <td>total number of results in data-set</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td>perPage</td>
+    <td>total number of results to output per page (optional)</td>
+    <td>none</td>
+  </tr>
+  <tr>
+    <td>startPage</td>
+    <td>page number of first viewable result</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>uiText</td>
+    <td>customize user interface text elements (optional)</td>
+    <td><a href="#language">UI language</a></td>
+  </tr>
 </table>
 
 <p>The <code>perPage</code> value is optional and is to be used in cases where you are processing a full data-set vs requesting as parts.  When this option is not provided a select menu will be created to allows the user to define the per-page result.</p>
@@ -201,26 +201,26 @@ $(document).ready(function() {
 <p>You can update the predefined language by defining <code>uiText</code> with the following values:</p>
 
 <table border="1">
-	<tr>
-		<th>Name</th>
-		<th>Default Value</th>
-	</tr>
-	<tr>
-		<td>LAST_PAGE</td>
-		<td>Last Page</td>
-	</tr>
-	<tr>
-		<td>NEXT_PAGE</td>
-		<td>Next Page</td>
-	</tr>
-	<tr>
-		<td>RESULTS</td>
-		<td><a href="#tokens">%first</a> - <a href="#tokens">%last</a> of <a href="#tokens">%total</a> results</td>
-	</tr>
-	<tr>
-		<td>VIEWING</td>
-		<td>Viewing</td>
-	</tr>
+  <tr>
+    <th>Name</th>
+    <th>Default Value</th>
+  </tr>
+  <tr>
+    <td>LAST_PAGE</td>
+    <td>Last Page</td>
+  </tr>
+  <tr>
+    <td>NEXT_PAGE</td>
+    <td>Next Page</td>
+  </tr>
+  <tr>
+    <td>RESULTS</td>
+    <td><a href="#tokens">%first</a> - <a href="#tokens">%last</a> of <a href="#tokens">%total</a> results</td>
+  </tr>
+  <tr>
+    <td>VIEWING</td>
+    <td>Viewing</td>
+  </tr>
 </table>
 
 <a name="callback"></a>
@@ -231,18 +231,18 @@ $(document).ready(function() {
 
 <pre>function doSomething(obj) {
 
-	// post-process event
-	if (obj.start == 2) {
-		alert('page 2');
-	}
-	else
-	if (obj.first == 4) {
-		alert('first result is 4');
-	}
-	else
-	if (obj.last == 7) {
-		alert('last result is 7');
-	}
+  // post-process event
+  if (obj.start == 2) {
+    alert('page 2');
+  }
+  else
+  if (obj.first == 4) {
+    alert('first result is 4');
+  }
+  else
+  if (obj.last == 7) {
+    alert('last result is 7');
+  }
 }</pre>
 
 <a name="tokens"></a>
@@ -250,34 +250,34 @@ $(document).ready(function() {
 <p>Object values can be accessed as a token using the <em>%name</em> format when overriding UI language text.</p>
 
 <table border="1">
-	<tr>
-		<th>Name</th>
-		<th>Description</th>
-	</tr>
-	<tr>
-		<td>total</td>
-		<td>total number of results in data-set</td>
-	</tr>
-	<tr>
-		<td>pages</td>
-		<td>total number of pages to output</td>
-	</tr>
-	<tr>
-		<td>limit</td>
-		<td>total number of results to output per page</td>
-	</tr>
-	<tr>
-		<td>start</td>
-		<td>page number of first viewable result</td>
-	</tr>
-	<tr>
-		<td>first</td>
-		<td>number of first viewable result</td>
-	</tr>
-	<tr>
-		<td>last</td>
-		<td>number of last viewable result</td>
-	</tr>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>total</td>
+    <td>total number of results in data-set</td>
+  </tr>
+  <tr>
+    <td>pages</td>
+    <td>total number of pages to output</td>
+  </tr>
+  <tr>
+    <td>limit</td>
+    <td>total number of results to output per page</td>
+  </tr>
+  <tr>
+    <td>start</td>
+    <td>page number of first viewable result</td>
+  </tr>
+  <tr>
+    <td>first</td>
+    <td>number of first viewable result</td>
+  </tr>
+  <tr>
+    <td>last</td>
+    <td>number of last viewable result</td>
+  </tr>
 </table>
 
 <h2>jQuery Support</h2>

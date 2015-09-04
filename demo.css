@@ -1,65 +1,65 @@
 /* example */
 
 #container {
-	margin: 10% auto 0px auto;
-	width: 800px;
+  margin: 10% auto 0px auto;
+  width: 800px;
 }
 
 /* customize */
 
 div.poppy_pagination div.options {
-	border-bottom: 1px solid #DDDDDD;
-	border-top: 1px solid #DDDDDD;
-	color: #999999;
-	height: 19px;
-	padding: 5px 0px 5px 0px;
-	width: 100%;
+  border-bottom: 1px solid #DDDDDD;
+  border-top: 1px solid #DDDDDD;
+  color: #999999;
+  height: 19px;
+  padding: 5px 0px 5px 0px;
+  width: 100%;
 }
 
 div.poppy_pagination div.options span {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 div.poppy_pagination div.options {
-	width: 100%;
+  width: 100%;
 }
 
 div.poppy_pagination div.options span strong {
-	color: #787878;
+  color: #787878;
 }
 
 div.poppy_pagination ul.pages li a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 div.poppy_pagination ul.pages li.crumbs a,
 div.poppy_pagination ul.pages li.crumbs span {
-	border: 1px solid #CCCCCC;
+  border: 1px solid #CCCCCC;
 }
 
 div.poppy_pagination ul.pages li.crumbs span {
-	background-color: #EEEEEE;
-	color: #787878;
-	font-weight: bold;
+  background-color: #EEEEEE;
+  color: #787878;
+  font-weight: bold;
 }
 
 div.poppy_pagination ul.pages li.last,
 div.poppy_pagination ul.pages li.next {
-	width: 100px;
+  width: 100px;
 }
 
 div.poppy_pagination ul.pages li.last span,
 div.poppy_pagination ul.pages li.next span {
-	color: #DDDDDD;
+  color: #DDDDDD;
 }
 
 /* Tidy-Table overrides */
 
 table.tidy_table {
-	clear: both;
-	width: 100%;
+  clear: both;
+  width: 100%;
 }
 
 table.tidy_table tbody {
-	cursor: auto;
+  cursor: auto;
 }

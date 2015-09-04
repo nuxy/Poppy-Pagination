@@ -11,106 +11,106 @@
  */
 
 div.poppy_pagination a {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 div.poppy_pagination div.options {
-	border-bottom: 1px solid #DDDDDD;
-	border-top: 1px solid #DDDDDD;
-	clear: both;
-	color: #999999;
-	float: left;
-	height: 19px;
-	margin: 10px 0px 10px 0px;
-	width: 100%;
+  border-bottom: 1px solid #DDDDDD;
+  border-top: 1px solid #DDDDDD;
+  clear: both;
+  color: #999999;
+  float: left;
+  height: 19px;
+  margin: 10px 0px 10px 0px;
+  width: 100%;
 }
 
 div.poppy_pagination div.options span {
-	float: left;
-	position: relative;
-	top: 2px;
+  float: left;
+  position: relative;
+  top: 2px;
 }
 
 div.poppy_pagination div.options span strong {
-	color: #787878;
+  color: #787878;
 }
 
 div.poppy_pagination div.options form {
-	float: right;
+  float: right;
 }
 
 div.poppy_pagination div.options form label {
-	float: left;
-	position: relative;
-	top: 2px;
+  float: left;
+  position: relative;
+  top: 2px;
 }
 
 div.poppy_pagination div.options form select {
-	margin-left: 8px;
+  margin-left: 8px;
 }
 
 div.poppy_pagination ul.pages {
-	clear: both;
-	float: left;
-	height: 20px;
-	list-style-type: none;
-	margin: 5px 0px 10px 0px;
-	position: relative;
-	width: 100%;
+  clear: both;
+  float: left;
+  height: 20px;
+  list-style-type: none;
+  margin: 5px 0px 10px 0px;
+  position: relative;
+  width: 100%;
 }
 
 div.poppy_pagination ul.pages.disabled div.crumbs {
-	visibility: hidden;
+  visibility: hidden;
 }
 
 div.poppy_pagination ul.pages li {
-	float: left;
-	padding: 4px 0px 4px 0px;
+  float: left;
+  padding: 4px 0px 4px 0px;
 }
 
 div.poppy_pagination ul.pages li a {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 div.poppy_pagination ul.pages li.crumbs {
-	left: 0px;
-	position: absolute;
-	text-align: center;
-	width: 100%;
-	z-index: 1;
+  left: 0px;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
 }
 
 div.poppy_pagination ul.pages li.crumbs a,
 div.poppy_pagination ul.pages li.crumbs span {
-	border: 1px solid #CCCCCC;
-	margin: 0px 6px 0px 6px;
-	padding: 3px 6px 3px 6px;
+  border: 1px solid #CCCCCC;
+  margin: 0px 6px 0px 6px;
+  padding: 3px 6px 3px 6px;
 }
 
 div.poppy_pagination ul.pages li.crumbs span {
-	background-color: #EEEEEE;
-	color: #787878;
-	font-weight: bold;
+  background-color: #EEEEEE;
+  color: #787878;
+  font-weight: bold;
 }
 
 div.poppy_pagination ul.pages li.last,
 div.poppy_pagination ul.pages li.next {
-	position: relative;
-	width: 100px;
-	z-index: 2;
+  position: relative;
+  width: 100px;
+  z-index: 2;
 }
 
 div.poppy_pagination ul.pages li.last {
-	float: left;
-	text-align: left;
+  float: left;
+  text-align: left;
 }
 
 div.poppy_pagination ul.pages li.next {
-	float: right;
-	text-align: right;
+  float: right;
+  text-align: right;
 }
 
 div.poppy_pagination ul.pages li.last span,
 div.poppy_pagination ul.pages li.next span {
-	color: #DDDDDD;
+  color: #DDDDDD;
 }
