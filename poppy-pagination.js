@@ -23,10 +23,13 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
     /**
      * Create new instance of Poppy-Pagination
+     *
      * @memberof PoppyPagination
      * @method init
+     *
      * @param {Object} config
      * @param {Function} callback
+     *
      * @returns {Object} jQuery object
      */
     "init": function(config, callback) {
@@ -52,6 +55,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
     /**
      * Perform cleanup
+     *
      * @memberof PoppyPagination
      * @method destroy
      */
@@ -61,21 +65,24 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
     /**
      * Perform cleanup
+     *
      * @memberof PoppyPagination
      * @method _createPageResults
-     * @param {Function} callback
-     * @returns {Object}
      * @private
+     *
+     * @param {Function} callback
+     *
+     * @returns {Object}
      */
     "_createPageResults": function(callback) {
       var $this = $(this);
 
-      // if results are available, create page elements
+      // If results are available, create page elements.
       var results = $this.PoppyPagination('_calcPageResults');
       if (results.total > 0) {
         var pager = $this.find('div.poppy_pagination');
 
-        // remove existing
+        // Remove existing elements..
         if (pager[0]) {
           pager.remove();
         }
@@ -99,20 +106,23 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
     },
 
     /**
-     * Create page result elements
+     * Create page result elements.
+     *
      * @memberof PoppyPagination
      * @method _createResultElm
+     * @private
+     *
      * @param {Object} results
      * @param {Function} callback
+     *
      * @returns {Object}
-     * @private
      */
     "_createResultElm": function(results, callback) {
       var $this = $(this),
           data  = $this.data(),
           lang  = data.config.uiText;
 
-      // create result total elements
+      // Create result total elements..
       var span = $('<span></span>')
         .append(replaceTokens(lang.RESULTS, results));
 
@@ -139,14 +149,14 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
               .attr('value', this);
             select.append(option);
 
-            // if the option is selected
+            // If the option is selected..
             if (this == results.limit) {
               select.selectedIndex = this;
             }
           }
         });
 
-        // attach menu options events
+        // Attach menu options events.
         if ( $.isFunction(callback) ) {
           select.on('change', function() {
             results.limit = parseInt(this.value);
@@ -157,34 +167,37 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
         form.append(select);
       }
 
-      // return HTML object
+      // Return HTML object.
       return $('<div></div>')
         .addClass('options')
         .append(span, form);
     },
 
     /**
-     * Create the first/last and subsequent page links
+     * Create the first/last and subsequent page links.
+     *
      * @memberof PoppyPagination
      * @method _createPagerElm
+     * @private
+     *
      * @param {Object} results
      * @param {Function} callback
+     *
      * @returns {Object}
-     * @private
      */
     "_createPagerElm": function(results, callback) {
       var $this = $(this),
           data  = $this.data(),
           lang  = data.config.uiText;
 
-      // create node elements
+      // Create node elements.
       var list = $('<ul></ul>')
         .addClass('pages');
 
       var crumbs = $('<li></li>')
         .addClass('crumbs');
 
-      // define onclick event
+      // Define onclick event
       function onClickEvent(event) {
         event.preventDefault();
         results.start = event.data;
@@ -194,7 +207,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
         }
       }
 
-      // always show 10 results, if available
+      // Always show 10 results, if available..
       (function() {
         var show_links = 10,
             first_link = (results.first / results.limit) - (show_links / 2),
@@ -209,7 +222,7 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
           // .. page links
           if (results.start != i) {
 
-            // bind mouse event
+            // Bind mouse event
             link = $('<a>' + i + '</a>')
               .on('click', i, onClickEvent);
           }
@@ -233,13 +246,13 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
           if (results.start > 1) {
 
-            // bind mouse event
+            // Bind mouse event
             link = $('<a></a>')
               .on('click', (results.start - 1), onClickEvent);
           }
           else {
 
-            // disable button
+            // Disable button
             link = $('<span></span>');
           }
 
@@ -264,13 +277,13 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
 
           if (results.pages != results.start) {
 
-            // bind mouse event
+            // Bind mouse event
             link = $('<a></a>')
               .on('click', (results.start + 1), onClickEvent);
           }
           else {
 
-            // disable button
+            // Disable button
             link = $('<span></span>');
           }
 
@@ -288,11 +301,13 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
     },
 
     /**
-     * Calculate page totals and return object of results
+     * Calculate page totals and return object of results.
+     *
      * @memberof PoppyPagination
      * @method _calcPageResults
-     * @returns {Object}
      * @private
+     *
+     * @returns {Object}
      */
     "_calcPageResults": function() {
       var $this = $(this),
@@ -323,11 +338,14 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
   };
 
   /**
-  * Return the row total
+  * Return the row tota;.
+  *
+  * @protected
+  *
   * @param {String} total
   * @param {Number} limit
+  *
   * @returns {Number}
-  * @protected
   */
   function getTotalRows(total, limit) {
     var count = Math.round(total / limit);
@@ -338,11 +356,14 @@ if (!window.jQuery || (window.jQuery && window.jQuery.fn.jquery < '1.8.3')) {
   }
 
   /**
-  * Replace language string tokens with its object defined value
+  * Replace language string tokens with its object defined value.
+  *
+  * @protected
+  *
   * @param {String} text
   * @param {Object} vals
+  *
   * @returns {String}
-  * @protected
   */
   function replaceTokens(text, vals) {
     for (var key in vals) {
