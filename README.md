@@ -2,7 +2,7 @@
 
 A simple way to generate next and last page buttons, breadcrumb links, and per-page result totals, as HTML.
 
-[<img src="https://github.com/nuxy/Poppy-Pagination/raw/master/preview.gif" alt="Poppy-Pagination" />](https://labs.mbrooks.info/demos/Poppy-Pagination)
+[<img src="https://nuxy.github.io/Poppy-Pagination/preview.gif" alt="Poppy-Pagination" />](https://nuxy.github.io/Poppy-Pagination)
 
 ## Features
 
@@ -12,7 +12,7 @@ A simple way to generate next and last page buttons, breadcrumb links, and per-p
 - Easy to set-up and customize.
 - Can be used to wrap any pre-existing set of results.
 - Customizable callback function for post-processing link events.
-- Fast and lightweight (jQuery plug-in *only 5.1 kB)
+- Fast and lightweight (jQuery plug-in *only 4.8 kB)
 
 ## Installation
 
@@ -20,7 +20,7 @@ This package can be easily installed using [Bower](http://bower.io).
 
   $ bower install poppy-pagination
 
-Please refer to the [README](https://labs.mbrooks.info/demos/Poppy-Pagination/README.html) for more information about this package.
+Please refer to the [README](https://nuxy.github.io/Poppy-Pagination) for more information about this package.
 
 ## Author
 
