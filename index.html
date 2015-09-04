@@ -9,7 +9,9 @@
 </head>
 <body>
 
-<h1>Poppy Pagination</h1>
+<a href="https://github.com/nuxy/Poppy-Pagination"><img class="forkme_ribbon" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub"></a>
+
+<h1>Poppy Pagination <a href="https://travis-ci.org/nuxy/Poppy-Pagination"><img class="build_status" src="https://camo.githubusercontent.com/e58db8426ea8b9995a24b5c8a06605514ec940df/68747470733a2f2f7472617669732d63692e6f72672f6e7578792f546964792d5461626c652e7376673f6272616e63683d6d6173746572" alt="Build Status"></a></h1>
 
 <p>A easy way to generate next and last page buttons, breadcrumb links, and per-page result totals, as HTML.</p>
 
@@ -74,7 +76,7 @@
 
 <h4>Use Example 1 - Output page elements</h4>
 
-<pre>&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
+<pre data-language="html">&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;script src="/path/to/poppy-pagination.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
@@ -112,10 +114,10 @@ $(document).ready(function() {
     var params = {
       count: config.perPage || 20
     };
-  
+
     if (config) {
 
-      // calculate SQL OFFSET
+      // Calculate SQL OFFSET
       params.offest = config.start * config.limit - config.limit;
     }
 
@@ -125,22 +127,22 @@ $(document).ready(function() {
       success: function(data) {
         var block = $('#container');
 
-        // remove existing data
+        // Remove existing data.
         block.TidyTable('destroy');
 
-        // create table elements
+        // Create table elements.
         block.TidyTable({
           columnTitles: data.columns,
           columnValues: data.values
         });
 
-        // create pager elements
+        // Create pager elements.
         block.PoppyPagination({
           totalResults: 20,
           perPage:      5,
           startPage:    (config.start || 1),
 
-          // override UI language
+          // Override UI language.
           uiText: {
             LAST_PAGE: 'Back',
             NEXT_PAGE: 'Next',
@@ -233,7 +235,7 @@ $(document).ready(function() {
 
 <pre>function doSomething(obj) {
 
-  // post-process event
+  // Post-process event
   if (obj.start == 2) {
     alert('page 2');
   }
@@ -288,7 +290,7 @@ $(document).ready(function() {
 
 <h2>Functional Testing</h2>
 
-<p>This package has been preconfigured to support <a href="http://qunitjs.com">QUnit</a> headless testing using <a href="http://www.travis-ci.org">Travis-CI</a>.  If you plan on using another integration tool you will have to create a custom project that combines the use of <em>QUnit</em> and <a href="http://www.phantomjs.org">PhantomJS</a> plugins.  You can manually run these tests in your web browser by clicking <a href="test.html">here</a>.</p>
+<p>This package has been preconfigured to support <a href="http://qunitjs.com">QUnit</a> headless testing using <a href="http://www.travis-ci.org">Travis-CI</a>.  If you plan on using another integration tool you will have to create a custom project that combines the use of <em>QUnit</em> and <a href="http://www.phantomjs.org">PhantomJS</a> plugins.  If headless testing in not available you can manually run <code>test.html</code> in your web browser.</p>
 
 <h2>Releases</h2>
 
