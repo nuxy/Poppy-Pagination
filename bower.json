@@ -1,8 +1,8 @@
 {
   "name": "poppy-pagination",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "homepage": "https://github.com/nuxy/Poppy-Pagination",
-  "description": "Generate page options/results using pre-existing content",
+  "description": "A simple way to generate next and last page buttons, breadcrumb links, and per-page result totals, as HTML.",
   "main": "poppy-pagination.js",
   "keywords": [
     "javascript",
