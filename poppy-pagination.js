@@ -349,7 +349,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
    *
    * @protected
    *
-   * @param {String} total
+   * @param {Number} total
    * @param {Number} limit
    *
    * @returns {Number}
