@@ -345,7 +345,7 @@ if (!window.jQuery || (window.jQuery && parseInt(window.jQuery.fn.jquery.replace
   };
 
   /**
-   * Return the row tota;.
+   * Return the row total.
    *
    * @protected
    *
