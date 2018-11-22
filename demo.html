@@ -17,8 +17,8 @@
       $.getJSON('demo/' + (obj.start || 1) + '.json', function(data) {
         var block = $('#container');
 
-        block.TidyTable('destroy');
-        block.TidyTable({
+        block[0].TidyTable('destroy');
+        block[0].TidyTable({
           columnTitles: ['ID', 'Rank', 'Programming Language', 'Ratings Jan 2012', 'Delta Jan 2012', 'Status'],
           columnValues: data
         });
