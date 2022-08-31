@@ -7,7 +7,7 @@ A simple way to generate next and last page buttons, breadcrumb links, and per-p
 ## Features
 
 - Extensible HTML/CSS interface.
-- Compatible with Firefox 3.6`, Chrome, Safari 5`, Opera, and Internet Explorer 7+ web browsers.
+- Compatible with Firefox 3.6, Chrome, Safari 5, Opera, and Internet Explorer 7+ web browsers.
 - Compatible with iOS and Android mobile web browsers.
 - Easy to set-up and customize.
 - Can be used to wrap any pre-existing set of results.
@@ -18,7 +18,7 @@ A simple way to generate next and last page buttons, breadcrumb links, and per-p
 
 This package can be easily installed using [Bower](http://bower.io).
 
-  $ bower install poppy-pagination
+    $ bower install poppy-pagination
 
 Please refer to the [README](https://nuxy.github.io/Poppy-Pagination) for more information about this package.
 
