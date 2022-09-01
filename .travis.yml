@@ -1,10 +1,14 @@
-language: ruby
-rvm:
-  - 1.9.3
+language: node_js
+node_js:
+  - "14"
 sudo: required
 services:
   - xvfb
 addons:
     chrome: stable
-before_script:
-  - "export PHANTOMJS_EXECUTABLE='phantomjs --ignore-ssl-errors=yes --local-to-remote-url-access=yes'"
+install:
+  - npm install
+script:
+  - npm run jshint
+  - npm run minify
+  - npm run phantomjs

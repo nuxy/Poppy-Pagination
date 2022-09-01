@@ -1,0 +1,32 @@
+{
+  "name": "poppy-pagination",
+  "version": "1.8.2",
+  "homepage": "https://github.com/nuxy/Poppy-Pagination",
+  "description": "A simple way to generate next and last page buttons, breadcrumb links, and per-page result totals, as HTML.",
+  "main": "poppy-pagination.js",
+  "keywords": [
+    "javascript",
+    "library"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nuxy/Poppy-Pagination.git"
+  },
+  "author": "Marc S. Brooks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nuxy/Poppy-Pagination/issues"
+  },
+  "devDependencies": {
+    "jshint": "^2.10.2",
+    "minify": "^3.0.5",
+    "phantomjs-prebuilt": "^2.1.7",
+    "qunitjs": "1.14.0"
+  },
+  "scripts": {
+    "jshint": "jshint poppy-pagination.js",
+    "minify": "minify poppy-pagination.css > poppy-pagination.min.css ; minify poppy-pagination.js > poppy-pagination.min.js",
+    "phantomjs": "phantomjs --ignore-ssl-errors=yes --local-to-remote-url-access=yes test/run-qunit.js test.html",
+    "postinstall": "cp -r node_modules/qunitjs/qunit test/"
+  }
+}
